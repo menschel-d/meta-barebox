@@ -15,3 +15,9 @@ S = "${WORKDIR}/git"
 
 inherit cml1 deploy
 
+# Works in most cases, exceptions are ppc instead of powerpc and sandbox
+BAREBOX_ARCH ??= "${KARCH}"
+
+# Analogue to UBOOT_MACHINE
+BAREBOX_MACHINE ??= "unknown"
+
