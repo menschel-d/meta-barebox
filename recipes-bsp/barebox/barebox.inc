@@ -17,14 +17,12 @@ inherit cml1
 inherit deploy
 inherit kernel-arch
 
-# Works in most cases, exceptions are ppc instead of powerpc and sandbox
-BAREBOX_ARCH ??= "${KARCH}"
-
 # Analogue to UBOOT_MACHINE
 BAREBOX_MACHINE ??= ""
 
 EXTRA_OEMAKE = ' \
     CROSS_COMPILE="${TARGET_PREFIX}" \
+    ARCH="${UBOOT_ARCH}" \
 '
 
 do_configure() {
