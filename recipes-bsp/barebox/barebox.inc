@@ -17,12 +17,17 @@ inherit cml1
 inherit deploy
 inherit kernel-arch
 
+
+# As long as barebox and u-boot use the same naming scheme for machine
+# architectures, we can re-use UBOOT_ARCH from the kernel-arch class.
+BAREBOX_ARCH ?= "${UBOOT_ARCH}"
+
 # Analogue to UBOOT_MACHINE
 BAREBOX_MACHINE ??= ""
 
 EXTRA_OEMAKE = ' \
     CROSS_COMPILE="${TARGET_PREFIX}" \
-    ARCH="${UBOOT_ARCH}" \
+    ARCH="${BAREBOX_ARCH}" \
 '
 
 do_configure() {
