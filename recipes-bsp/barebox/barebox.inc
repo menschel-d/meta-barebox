@@ -47,3 +47,8 @@ do_compile() {
     oe_runmake all
 }
 
+do_deploy() {
+}
+
+addtask deploy before do_build after do_compile
+
