@@ -17,6 +17,7 @@ inherit cml1
 inherit deploy
 inherit kernel-arch
 
+PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 # As long as barebox and u-boot use the same naming scheme for machine
 # architectures, we can re-use UBOOT_ARCH from the kernel-arch class.
