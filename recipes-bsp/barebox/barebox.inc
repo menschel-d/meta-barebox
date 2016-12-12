@@ -6,7 +6,7 @@ SECTION = "bootloaders"
 LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://COPYING;md5=057bf9e50e1ca857d0eb97bfe4ba8e5d"
 
-DEPENDS = ""
+DEPENDS = "lzop-native"
 PROVIDES = "virtual/bootloader"
 
 SRC_URI = "git://git.pengutronix.de/barebox;branch=master"
