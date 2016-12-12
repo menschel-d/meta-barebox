@@ -52,6 +52,11 @@ do_compile() {
 }
 
 do_deploy() {
+    set -e
+    for img in `cat "${S}/barebox-flash-images"`
+    do
+        install -m 644 "${S}/${img}" "${DEPLOYSUBDIR}"
+    done
 }
 
 addtask deploy before do_build after do_compile
