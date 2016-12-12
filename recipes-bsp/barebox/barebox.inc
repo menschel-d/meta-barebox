@@ -31,6 +31,9 @@ EXTRA_OEMAKE = ' \
     ARCH="${BAREBOX_ARCH}" \
 '
 
+DEPLOYSUBDIR="${DEPLOYDIR}/${PN}-${PV}"
+do_deploy[dirs] += "${DEPLOYSUBDIR}"
+
 do_configure() {
     set -e
     unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
