@@ -6,8 +6,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=057bf9e50e1ca857d0eb97bfe4ba8e5d"
 
 DEPENDS = "lzop-native"
 
-SRC_URI = "git://git.pengutronix.de/barebox;branch=master"
 PV_append = "+git${SRCPV}"
+SRC_URI = "git://git.pengutronix.de/barebox;branch=master"
 
 S = "${WORKDIR}/git"
 
@@ -15,7 +15,6 @@ inherit cml1
 inherit deploy
 inherit kernel-arch
 
-PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 # As long as barebox and u-boot use the same naming scheme for machine
 # architectures, we can re-use UBOOT_ARCH from the kernel-arch class.
@@ -59,4 +58,6 @@ do_deploy() {
 }
 
 addtask deploy before do_build after do_compile
+
+PACKAGE_ARCH = "${MACHINE_ARCH}"
 
