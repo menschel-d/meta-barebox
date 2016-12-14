@@ -31,6 +31,31 @@ EXTRA_OEMAKE = ' \
 DEPLOYSUBDIR="${DEPLOYDIR}/${PN}-${PV}"
 do_deploy[dirs] += "${DEPLOYSUBDIR}"
 
+
+def find_cfgs(d):
+    """Return all configuration fragments from SRC_URI.
+    """
+    sources = src_patches(d, True)
+    result = []
+    for s in sources:
+        root, ext = os.path.splitext(s)
+        if ext in [".cfg"]:
+            result.append(s)
+    return result
+
+
+def find_dtss(d):
+    """Return all device tree source files from SRC_URI.
+    """
+    sources = src_patches(d, True)
+    result = []
+    for s in sources:
+        root, ext = os.path.splitext(s)
+        if ext in [".dts", ".dtsi"]:
+            result.append(s)
+    return result
+
+
 do_configure() {
     set -e
     unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
