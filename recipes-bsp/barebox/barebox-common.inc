@@ -60,9 +60,7 @@ apply_cfgs() {
     if [ -n "${fragments}" ]
     then
         bbnote "Applying configuration fragments."
-        pushd ${WORKDIR}
         "${S}/scripts/kconfig/merge_config.sh" -m -O "${B}" .config ${fragments}
-        popd
     fi
 }
 
