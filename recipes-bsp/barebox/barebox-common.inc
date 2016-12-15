@@ -55,6 +55,16 @@ def find_dtss(d):
             result.append(s)
     return result
 
+apply_cfgs() {
+    fragments=${@" ".join(find_cfgs(d))}
+    if [ -n "${fragments}" ]
+    then
+        bbnote "Applying configuration fragments."
+        pushd ${WORKDIR}
+        "${S}/scripts/kconfig/merge_config.sh" -m -O "${B}" .config ${fragments}
+        popd
+    fi
+}
 
 do_configure() {
     set -e
@@ -65,6 +75,7 @@ do_configure() {
         bbnote "Using default config: ${BAREBOX_MACHINE}"
         oe_runmake "${BAREBOX_MACHINE}"
     fi
+    apply_cfgs
 }
 
 do_compile() {
