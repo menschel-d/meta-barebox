@@ -8,7 +8,7 @@ DEPENDS += "virtual/libc"
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
 SRC_URI += " \
-    file://target-tools.cfg \
+    file://target-utils.cfg \
 "
 
 PACKAGE_ARCH="${TUNE_PKGARCH}"
