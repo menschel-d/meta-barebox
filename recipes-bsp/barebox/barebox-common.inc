@@ -84,7 +84,7 @@ do_compile() {
 
 do_deploy() {
     set -e
-    for img in `cat "${B}/barebox-flash-images"`
+    for img in $(cat "${B}/barebox-flash-images")
     do
         install -m 644 "${B}/${img}" "${DEPLOYSUBDIR}"
     done
