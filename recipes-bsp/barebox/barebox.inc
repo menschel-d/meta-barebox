@@ -5,5 +5,5 @@ DESCRIPTION = ""
 
 PROVIDES = "virtual/bootloader"
 
-COMPATIBLE_MACHINE = "Invalid"
+COMPATIBLE_MACHINE = "(invalid-machine)"
 
