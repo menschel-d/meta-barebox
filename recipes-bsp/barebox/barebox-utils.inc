@@ -5,8 +5,6 @@ DESCRIPTION = ""
 
 DEPENDS += "virtual/libc"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-
 SRC_URI += " \
     file://target-utils.cfg \
 "
