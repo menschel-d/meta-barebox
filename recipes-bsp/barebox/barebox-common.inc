@@ -21,7 +21,7 @@ inherit kernel-arch
 BAREBOX_ARCH ?= "${UBOOT_ARCH}"
 
 # Analogue to UBOOT_MACHINE
-BAREBOX_MACHINE ??= ""
+BAREBOX_CONFIG ??= ""
 
 EXTRA_OEMAKE = ' \
     CROSS_COMPILE="${TARGET_PREFIX}" \
@@ -68,10 +68,10 @@ do_configure() {
     set -e
     unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
 
-    if [ ! -z "${BAREBOX_MACHINE}" ]
+    if [ ! -z "${BAREBOX_CONFIG}" ]
     then
-        bbnote "Using default config: ${BAREBOX_MACHINE}"
-        oe_runmake "${BAREBOX_MACHINE}"
+        bbnote "Using default config: ${BAREBOX_CONFIG}"
+        oe_runmake "${BAREBOX_CONFIG}"
     fi
     apply_cfgs
 }
