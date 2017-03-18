@@ -23,6 +23,16 @@ BAREBOX_ARCH ?= "${UBOOT_ARCH}"
 # Analogue to UBOOT_MACHINE
 BAREBOX_CONFIG ??= ""
 
+BAREBOX_IMAGE_SRC ??= "barebox.bin"
+
+BAREBOX_IMAGE ??= "${PN}-${MACHINE}-${PV}-${PR}-${DATETIME}"
+BAREBOX_IMAGE[vardepsexclude] = "DATETIME"
+BAREBOX_IMAGE_SYMLINK ??= "${PN}"
+BAREBOX_IMAGE_SUFFIX ??= ".bin"
+BAREBOX_IMAGE_SUFFIX_ELF ??= ".elf"
+#BAREBOX_IMAGE_SUFFIX_SPI ??= ".spi"
+#BAREBOX_IMAGE_SUFFIX_PER ??= ".per"
+
 EXTRA_OEMAKE = ' \
     CROSS_COMPILE="${TARGET_PREFIX}" \
     ARCH="${BAREBOX_ARCH}" \
@@ -84,11 +94,16 @@ do_compile() {
 
 do_deploy() {
     set -e
-    for img in $(cat "${B}/barebox-flash-images")
-    do
-        install -m 644 "${B}/${img}" "${DEPLOYSUBDIR}"
-    done
-    install -m 644 "${B}/.config" "${DEPLOYSUBDIR}/${PN}.config"
+    install -m 644 "${B}/${BAREBOX_IMAGE_SRC}" \
+        "${DEPLOYSUBDIR}/${BAREBOX_IMAGE}${BAREBOX_IMAGE_SUFFIX}"
+    ln -sfr "${DEPLOYSUBDIR}/${BAREBOX_IMAGE}${BAREBOX_IMAGE_SUFFIX}" \
+        "${DEPLOYSUBDIR}/${BAREBOX_IMAGE_SYMLINK}${BAREBOX_IMAGE_SUFFIX}"
+
+    install -m 644 "${B}/.config" "${DEPLOYSUBDIR}/${BAREBOX_IMAGE}$.config"
+    ln -sfr "${DEPLOYSUBDIR}/${BAREBOX_IMAGE}.config" \
+        "${DEPLOYSUBDIR}/${BAREBOX_IMAGE_SYMLINK}.config"
+
+    ln -sfr "${DEPLOYSUBDIR}" "${DEPLOYDIR}/${PN}"
 }
 
 addtask deploy before do_build after do_compile

@@ -60,10 +60,12 @@ Input
 
 BAREBOX_CONFIG
 BAREBOX_IMAGE_SRC
-BAREBOX_IMAGE_BASENAME
+BAREBOX_IMAGE
+BAREBOX_IMAGE_SYMLINK
 BAREBOX_IMAGE_SUFFIX_ELF
 BAREBOX_IMAGE_SUFFIX_SPI
 BAREBOX_IMAGE_SUFFIX_PER
+
 
 Output
 ------
@@ -119,4 +121,7 @@ Todo
 - Link to most recent output in deploy directory.
 - Adapt skeleton README file.
 - Add summary and description to recipes.
+- Add support for sandbox configuration.
+- Add clean information.
+- Add install task.
 
