@@ -99,7 +99,7 @@ do_deploy() {
     ln -sfr "${DEPLOYSUBDIR}/${BAREBOX_IMAGE}${BAREBOX_IMAGE_SUFFIX}" \
         "${DEPLOYSUBDIR}/${BAREBOX_IMAGE_SYMLINK}${BAREBOX_IMAGE_SUFFIX}"
 
-    install -m 644 "${B}/.config" "${DEPLOYSUBDIR}/${BAREBOX_IMAGE}$.config"
+    install -m 644 "${B}/.config" "${DEPLOYSUBDIR}/${BAREBOX_IMAGE}.config"
     ln -sfr "${DEPLOYSUBDIR}/${BAREBOX_IMAGE}.config" \
         "${DEPLOYSUBDIR}/${BAREBOX_IMAGE_SYMLINK}.config"
 
