@@ -3,5 +3,8 @@ require barebox-common.inc
 SUMMARY = ""
 DESCRIPTION = ""
 
+BAREBOX_IMAGE_SUFFIX ??= ""
+BAREBOX_IMAGE_BASENAME ??= "MLO"
+
 COMPATIBLE_MACHINE = "${COMPATIBLE_MACHINE_pn-barebox}"
 

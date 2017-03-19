@@ -25,11 +25,12 @@ BAREBOX_CONFIG ??= ""
 
 BAREBOX_IMAGE_SRC ??= "barebox.bin"
 
-BAREBOX_IMAGE ??= "${PN}-${MACHINE}-${PV}-${PR}-${DATETIME}"
+BAREBOX_IMAGE_BASENAME ??= "${PN}"
+BAREBOX_IMAGE ??= "${BAREBOX_IMAGE_BASENAME}-${MACHINE}-${PV}-${PR}-${DATETIME}"
 BAREBOX_IMAGE[vardepsexclude] = "DATETIME"
-BAREBOX_IMAGE_SYMLINK ??= "${PN}"
+BAREBOX_IMAGE_SYMLINK ??= "${BAREBOX_IMAGE_BASENAME}"
 BAREBOX_IMAGE_SUFFIX ??= ".bin"
-BAREBOX_IMAGE_SUFFIX_ELF ??= ".elf"
+#BAREBOX_IMAGE_SUFFIX_ELF ??= ".elf"
 #BAREBOX_IMAGE_SUFFIX_SPI ??= ".spi"
 #BAREBOX_IMAGE_SUFFIX_PER ??= ".per"
 
@@ -94,15 +95,19 @@ do_compile() {
 
 do_deploy() {
     set -e
+
+    # Deploy main image.
     install -m 644 "${B}/${BAREBOX_IMAGE_SRC}" \
         "${DEPLOYSUBDIR}/${BAREBOX_IMAGE}${BAREBOX_IMAGE_SUFFIX}"
     ln -sfr "${DEPLOYSUBDIR}/${BAREBOX_IMAGE}${BAREBOX_IMAGE_SUFFIX}" \
         "${DEPLOYSUBDIR}/${BAREBOX_IMAGE_SYMLINK}${BAREBOX_IMAGE_SUFFIX}"
 
+    # Deploy configuration file.
     install -m 644 "${B}/.config" "${DEPLOYSUBDIR}/${BAREBOX_IMAGE}.config"
     ln -sfr "${DEPLOYSUBDIR}/${BAREBOX_IMAGE}.config" \
         "${DEPLOYSUBDIR}/${BAREBOX_IMAGE_SYMLINK}.config"
 
+    # Make a symlink for the output directory.
     ln -sfr "${DEPLOYSUBDIR}" "${DEPLOYDIR}/${PN}"
 }
 
