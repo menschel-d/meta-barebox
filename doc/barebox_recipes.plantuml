@@ -1,0 +1,59 @@
+@startuml
+
+package "meta" <<Folder>> {
+	class Cml1 as "cml1.bbclass"
+	class Deploy as "deploy.bbclass"
+	class KernelArch as "kernel-arch.bbclass"
+}
+
+package "meta-barebox" <<Folder>> {
+	class BareboxCommonInc as "barebox-common.inc" << (I, yellow) >> {
+		BAREBOX_CONFIG ??= ""
+		BAREBOX_IMAGE_SRC ??= "barebox.bin"
+		BAREBOX_IMAGE_BASENAME ??= "${PN}"
+		BAREBOX_IMAGE ??= "${BAREBOX_IMAGE_BASENAME}-${MACHINE}-${PV}-${PR}-${DATETIME}"
+		BAREBOX_IMAGE_SYMLINK ??= "${BAREBOX_IMAGE_BASENAME}"
+		BAREBOX_IMAGE_SUFFIX ??= ".bin"
+		BAREBOX_IMAGE_SUFFIX_ELF ??= ".elf"
+		BAREBOX_IMAGE_SUFFIX_SPI ??= ".spi"
+		BAREBOX_IMAGE_SUFFIX_PER ??= ".per"
+	}
+
+	class BareboxInc as "barebox.inc" << (I, yellow) >> {
+	}
+
+	class BareboxPblInc as "barebox-pbl.inc" << (I, yellow) >> {
+		BAREBOX_IMAGE_BASENAME ??= "MLO"
+		BAREBOX_IMAGE_SUFFIX ??= ""
+	}
+
+	class BareboxUtilsInc as "barebox-utils.inc" << (I, yellow) >> {
+	}
+
+	class BareboxBb as "barebox_<version>.bb" << (R, lightblue) >> {
+	}
+
+	class BareboxPblBb as "barebox-pbl_<version>.bb" << (R, lightblue) >> {
+	}
+
+	class BareboxUtilsBb as "barebox-utils_<version>.bb" << (R, lightblue) >> {
+	}
+
+	BareboxCommonInc <-- BareboxInc : require
+	BareboxCommonInc <-- BareboxPblInc : require
+	BareboxCommonInc <-- BareboxUtilsInc : require
+
+	BareboxInc <-- BareboxBb : require
+	BareboxPblInc <-- BareboxPblBb : require
+	BareboxUtilsInc <-- BareboxUtilsBb : require
+}
+
+Cml1 <|-- BareboxCommonInc
+Deploy <|-- BareboxCommonInc
+KernelArch <|-- BareboxCommonInc
+
+hide empty members
+hide empty methods
+
+@enduml
+
