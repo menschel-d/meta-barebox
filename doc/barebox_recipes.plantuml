@@ -1,15 +1,19 @@
 @startuml
 
-package "meta" <<Folder>> {
+skinparam packageStyle Folder
+
+package "meta" {
 	class Cml1 as "cml1.bbclass"
 	class Deploy as "deploy.bbclass"
 	class KernelArch as "kernel-arch.bbclass"
 }
 
-package "meta-barebox" <<Folder>> {
+package "meta-barebox" {
 	class BareboxCommonInc as "barebox-common.inc" << (I, yellow) >> {
+		.. Input Variables ..
 		BAREBOX_CONFIG ??= ""
 		BAREBOX_IMAGE_SRC ??= "barebox.bin"
+		.. Output Variables ..
 		BAREBOX_IMAGE_BASENAME ??= "${PN}"
 		BAREBOX_IMAGE ??= "${BAREBOX_IMAGE_BASENAME}-${MACHINE}-${PV}-${PR}-${DATETIME}"
 		BAREBOX_IMAGE_SYMLINK ??= "${BAREBOX_IMAGE_BASENAME}"
@@ -17,17 +21,29 @@ package "meta-barebox" <<Folder>> {
 		BAREBOX_IMAGE_SUFFIX_ELF ??= ".elf"
 		BAREBOX_IMAGE_SUFFIX_SPI ??= ".spi"
 		BAREBOX_IMAGE_SUFFIX_PER ??= ".per"
+		--
+		-find_cfgs()
+		-find_dtss()
+		-apply_cfgs()
+		+do_configure()
+		+do_compile()
+		+do_deploy()
 	}
 
 	class BareboxInc as "barebox.inc" << (I, yellow) >> {
 	}
 
 	class BareboxPblInc as "barebox-pbl.inc" << (I, yellow) >> {
+		.. Output Variables ..
 		BAREBOX_IMAGE_BASENAME ??= "MLO"
 		BAREBOX_IMAGE_SUFFIX ??= ""
+		--
+		-get_extra_image_name()
+		+do_deploy_append()
 	}
 
 	class BareboxUtilsInc as "barebox-utils.inc" << (I, yellow) >> {
+		+do_install()
 	}
 
 	class BareboxBb as "barebox_<version>.bb" << (R, lightblue) >> {
@@ -53,7 +69,6 @@ Deploy <|-- BareboxCommonInc
 KernelArch <|-- BareboxCommonInc
 
 hide empty members
-hide empty methods
 
 @enduml
 
