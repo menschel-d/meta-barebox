@@ -16,10 +16,6 @@ This layer depends on:
   layers: meta
   branch: master
 
-  URI: git://git.yoctoproject.org/xxxx
-  layers: xxxx
-  branch: master
-
 
 Patches
 =======
@@ -39,8 +35,6 @@ Table of Contents
 
 I. Adding the barebox layer to your build
 =================================================
-
---- replace with specific instructions for the barebox layer ---
 
 In order to use this layer, you need to make the build system aware of
 it.
