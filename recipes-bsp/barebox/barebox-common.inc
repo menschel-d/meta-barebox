@@ -10,6 +10,7 @@ PV_append = "+git${SRCPV}"
 SRC_URI = "git://git.pengutronix.de/barebox;branch=master"
 
 S = "${WORKDIR}/git"
+B = "${WORKDIR}/build"
 
 inherit cml1
 inherit deploy
@@ -36,6 +37,8 @@ BAREBOX_IMAGE_SUFFIX_SPI ??= ".spi"
 BAREBOX_IMAGE_SUFFIX_PER ??= ".per"
 
 EXTRA_OEMAKE = ' \
+    -C "${S}" \
+    O="${B}" \
     CROSS_COMPILE="${TARGET_PREFIX}" \
     ARCH="${BAREBOX_ARCH}" \
 '
