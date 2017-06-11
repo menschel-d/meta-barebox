@@ -1,6 +1,6 @@
 require barebox-common.inc
 
-SUMMARY = ""
+SUMMARY = "Versatile Linux-like bootloader for embedded systems"
 DESCRIPTION = ""
 
 PROVIDES = "virtual/bootloader"

@@ -1,6 +1,6 @@
 require barebox-common.inc
 
-SUMMARY = ""
+SUMMARY = "Versatile Linux-like bootloader for embedded systems (pre-bootloader)"
 DESCRIPTION = ""
 
 BAREBOX_IMAGE_SUFFIX ??= ""
