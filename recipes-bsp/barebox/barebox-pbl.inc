@@ -1,7 +1,12 @@
 require barebox-common.inc
 
 SUMMARY = "Versatile Linux-like bootloader for embedded systems (pre-bootloader)"
-DESCRIPTION = ""
+DESCRIPTION = "The pre-bootloader is a minimalistic version of barebox. \
+It is used on embedded systems with restricted resources to prepare the \
+hardware before loading the full barebox bootloader. \
+Depending on the context, the pre-bootloader is also referred to as \
+SPL (Secondary Program Loader) or MLO (Memory LOader)."
+
 
 BAREBOX_IMAGE_SUFFIX ??= ""
 BAREBOX_IMAGE_BASENAME ??= "MLO"

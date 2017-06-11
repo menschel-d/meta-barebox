@@ -1,7 +1,8 @@
 require barebox-common.inc
 
 SUMMARY = "Versatile Linux-like bootloader for embedded systems (target tools)"
-DESCRIPTION = ""
+DESCRIPTION = "The target tools are used to interact with the barebox bootloader \
+and its environment from within a running Linux system on the target."
 
 DEPENDS += "virtual/libc"
 
