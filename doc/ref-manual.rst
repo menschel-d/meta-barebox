@@ -87,7 +87,7 @@ Contrary to the current Yocto practice, the files are not put directly in
 BAREBOX_IMAGE
     The full basename of the generated image file (without the file extension).
 
-    Default value: ``"${BAREBOX_IMAGE_BASENAME}-${MACHINE}-${PV}-${PR}-${DATETIME}"``
+    Default value: ``"${BAREBOX_IMAGE_BASENAME}-${PV}-${PR}-${MACHINE}-${DATETIME}"``
 
 
 BAREBOX_IMAGE_BASENAME
