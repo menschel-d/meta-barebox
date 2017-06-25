@@ -161,6 +161,12 @@ BAREBOX_IMAGE_SYMLINK
 Common tasks
 ============
 
+This section gives a short introduction to common tasks when working with
+barebox.
+Modifications of barebox usually take place either in a BSP layer to
+adapt it to a particular hardware, or in a distribution layer to ensure
+a common feature set or default environment.
+
 
 Machine configuration
 ---------------------
@@ -173,16 +179,50 @@ Machine configuration
 Barebox configuration
 ---------------------
 
-- cml1 class, do_menuconfig, do_diffconfig
-- configuration fragments
+Barebox uses the Linux kernel build system `kbuild` to manage its
+configuration.
+This build system is supported by the ``cml1`` class from the ``meta`` layer.
+It provides the BitBake tasks ``menuconfig`` and ``diffconfig``.
+The former task is used to modify the configuration while the latter task
+is used to generate `configuration fragments` which either enable or disable
+certain features of barebox.
+For more information on how to use these BitBake tasks, you can refer to the
+`Yocto Project Linux Kernel Development Manual`_.
+
+.. _`Yocto Project Linux Kernel Development Manual`:
+    https://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html
 
 
 Default environment modification
 --------------------------------
 
-- Overlay of barebox environment version 2
-- Applying patches, extending do_patch to add or remove files.
+With its environment framework, barebox already provides a versatile
+infrastructure to construct its default environment from a sequence
+of overlays.
 
+.. table:: Barebox environment overlays
+
+    ================================= ======================
+    Directory                         Description
+    ================================= ======================
+    ``defaultenv/defaultenv-2-base``  base files
+    ``defaultenv/defaultenv-2-dfu``   overlay for DFU
+    ``defaultenv/defaultenv-2-menu``  overlay for menus
+    ``arch/$ARCH/boards/<board>/env`` board specific overlay
+    ================================= ======================
+
+Therefore, you can just choose the overlay that best fits your purpose
+and modify it accordingly.
+For example, if you want to adapt the environment of barebox inside your
+distribution layer to achieve a common behavior regardless of the board
+on which it will run, it might be reasonable to patch the base overlay.
+If you  work on a BSP layer instead, the preferred way would be to modify
+the board specific overlay accordingly.
+More information can be obtained by reading the official documentation on
+the `Barebox Default Environment Version 2`_.
+
+.. _`Barebox Default Environment Version 2`:
+    http://barebox.org/doc/latest/user/defaultenv-2.html
 
 
 Examples
