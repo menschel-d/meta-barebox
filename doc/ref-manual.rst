@@ -171,9 +171,40 @@ a common feature set or default environment.
 Machine configuration
 ---------------------
 
+.. note::
 
+    This section assumes that the BitBake variables for barebox are set in a
+    machine configuration file inside of a BSP layer.
+    If you intend to specify these settings elsewhere, e.g. in
+    ``conf/local.conf`` or in your distribution configuration, you have to
+    add an appropriate machine overrides suffix to the BitBake variables in
+    this section.
 
+First of all, you need to select a default configuration for the build system
+of barebox.
+This configuration determines for which machine barebox should be built
+and which features should be included.
+You can use the following shell command to list the available default
+configurations::
 
+    $ find <barebox source directory> -type f -name "*_defconfig"
+
+After selecting the appropriate configuration, place its filename into the
+``BAREBOX_CONFIG`` variable::
+
+    BAREBOX_CONFIG = "<bootloader configuration>"
+
+If the machine needs a pre-bootloader in order to work, you need to supply an
+appropriate configuration file for it, too. Furthermore, the pre-bootloader
+package needs to be added to the runtime-dependencies of barebox::
+
+    BAREBOX_CONFIG_pn-barebox-pbl = "<pre-bootloader configuration>"
+    RDEPENDS_barebox += "barebox-pbl"
+
+Last but not least, the machine needs to be listed in the
+``COMPATIBLE_MACHINE`` variable for barebox::
+
+    COMPATIBLE_MACHINE_pn-barebox = "<machine>"
 
 
 Barebox configuration
