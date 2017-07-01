@@ -661,7 +661,5 @@ the transition from one Yocto release to another.
 Todo
 ====
 
-- Adapt skeleton README file.
 - Add support for sandbox configuration.
-- Add clean information.
 
