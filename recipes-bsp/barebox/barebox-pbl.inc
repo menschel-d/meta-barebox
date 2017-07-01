@@ -7,11 +7,8 @@ hardware before loading the full barebox bootloader. \
 Depending on the context, the pre-bootloader is also referred to as \
 SPL (Secondary Program Loader) or MLO (Memory LOader)."
 
-
 BAREBOX_IMAGE_SUFFIX ??= ""
 BAREBOX_IMAGE_BASENAME ??= "MLO"
-
-COMPATIBLE_MACHINE = "${COMPATIBLE_MACHINE_pn-barebox}"
 
 def get_extra_image_name(d):
     path = d.getVar("BAREBOX_IMAGE_SRC", True)

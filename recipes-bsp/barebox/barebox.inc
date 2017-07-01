@@ -9,5 +9,3 @@ barebox is the self-proclaimed Swiss Army Knife for bare metal."
 
 PROVIDES = "virtual/bootloader"
 
-COMPATIBLE_MACHINE = "(invalid-machine)"
-

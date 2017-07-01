@@ -205,6 +205,11 @@ Last but not least, the machine needs to be listed in the
 ``COMPATIBLE_MACHINE`` variable for barebox::
 
     COMPATIBLE_MACHINE_pn-barebox = "<machine>"
+    COMPATIBLE_MACHINE_pn-barebox-pbl = "<machine>"
+
+This step is also required for the pre-bootloader if the machine needs one.
+That is because machines which don't need a pre-bootloader usually also don't
+support one.
 
 
 Barebox configuration
@@ -287,11 +292,12 @@ This can be accomplished by appending the following lines to
     BAREBOX_CONFIG_pn-barebox-pbl_beaglebone = "am335x_mlo_defconfig"
     RDEPENDS_barebox_beaglebone += "barebox-pbl"
     COMPATIBLE_MACHINE_pn-barebox_beaglebone = "beaglebone"
+    COMPATIBLE_MACHINE_pn-barebox-pbl_beaglebone = "beaglebone"
 
 This sets the config for both bootloader parts and also lists the
 pre-bootloader as a runtime-dependency of the main bootloader.
 We also have to explicitly state that a specific target machine is
-compatible with the barebox bootloader.
+compatible with the barebox bootloader and its pre-bootloader.
 
 
 Building barebox
