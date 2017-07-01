@@ -22,7 +22,7 @@ do_install() {
         then
             case "${i}" in
                 barebox*)
-                    dest=${i}
+                    dest="${i}"
                     ;;
                 *)
                     dest="barebox-${i}"
