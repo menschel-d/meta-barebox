@@ -34,7 +34,7 @@ Table of Contents
 
 
 I. Adding the barebox layer to your build
-=================================================
+=========================================
 
 In order to use this layer, you need to make the build system aware of
 it.
