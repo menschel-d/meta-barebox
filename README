@@ -30,7 +30,7 @@ Table of Contents
 =================
 
   I. Adding the barebox layer to your build
- II. Misc
+ II. Additional documentation
 
 
 I. Adding the barebox layer to your build
@@ -52,7 +52,10 @@ other layers needed. e.g.:
     "
 
 
-II. Misc
-========
+II. Additional documentation
+============================
 
---- replace with specific information about the barebox layer ---
+The barebox layer has its own reference manual with detailed information about
+its interface and how to use it.
+The reference manual is located at "doc/ref-manual.rst" and can be exported to
+either HTML or PDF via a makefile.
