@@ -195,22 +195,28 @@ After selecting the appropriate configuration, place its filename into the
 
     BAREBOX_CONFIG = "<bootloader configuration>"
 
-If the machine needs a pre-bootloader in order to work, you need to supply an
-appropriate configuration file for it, too. Furthermore, the pre-bootloader
-package needs to be added to the runtime-dependencies of barebox::
+To figure out what value to place in ``BAREBOX_IMAGE_SRC``, you can build
+barebox with the configuration that you selected in the previous step.
+Once barebox has been built, the file ``barebox-flash-images`` in its build
+directory will contain a list of produced images.
+Among these entries, select the one which best suits you machine::
 
-    BAREBOX_CONFIG_pn-barebox-pbl = "<pre-bootloader configuration>"
-    RDEPENDS_barebox += "barebox-pbl"
+    BAREBOX_IMAGE_SRC = "<bootloader image>"
 
 Last but not least, the machine needs to be listed in the
 ``COMPATIBLE_MACHINE`` variable for barebox::
 
     COMPATIBLE_MACHINE_pn-barebox = "<machine>"
-    COMPATIBLE_MACHINE_pn-barebox-pbl = "<machine>"
 
-This step is also required for the pre-bootloader if the machine needs one.
-That is because machines which don't need a pre-bootloader usually also don't
-support one.
+If the machine requires a pre-bootloader in order to work, you need to set
+these variables for the recipe ``barebox-pbl`` as well (using overrides).
+Furthermore, the pre-bootloader package needs to be added to the
+runtime-dependencies of barebox::
+
+    BAREBOX_CONFIG_pn-barebox-pbl = "<pre-bootloader configuration>"
+    BAREBOX_IMAGE_SRC_pn-barebox-pbl = "<pre-bootloader image>"
+    RDEPENDS_barebox += "barebox-pbl"
+    COMPATIBLE_MACHINE_pn-barebox-pbl = "<machine>"
 
 
 Barebox configuration
@@ -291,6 +297,8 @@ This can be accomplished by appending the following lines to
 
     BAREBOX_CONFIG_beaglebone = "am335x_defconfig"
     BAREBOX_CONFIG_pn-barebox-pbl_beaglebone = "am335x_mlo_defconfig"
+    BAREBOX_IMAGE_SRC_beaglebone = "images/barebox-am33xx-beaglebone.img"
+    BAREBOX_IMAGE_SRC_pn-barebox-pbl_beaglebone = "images/barebox-am33xx-beaglebone-mlo.img"
     RDEPENDS_barebox_beaglebone += "barebox-pbl"
     COMPATIBLE_MACHINE_pn-barebox_beaglebone = "beaglebone"
     COMPATIBLE_MACHINE_pn-barebox-pbl_beaglebone = "beaglebone"
