@@ -4,7 +4,7 @@ Reference Manual for ``meta-barebox``
 
 :Author: Dennis Menschel <menschel-d@posteo.de>
 :Date: 2017-07-02
-:Version: Yocto 2.2 (morty)
+:Version: Yocto 2.3 (pyro)
 
 .. sectnum::
 
