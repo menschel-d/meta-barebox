@@ -3,7 +3,7 @@ Reference Manual for ``meta-barebox``
 =====================================
 
 :Author: Dennis Menschel <menschel-d@posteo.de>
-:Date: 2017-06-18
+:Date: 2017-07-02
 :Version: Yocto 2.2 (morty)
 
 .. sectnum::
@@ -61,7 +61,8 @@ inside some BSP layer.
 
 
 BAREBOX_CONFIG
-    The configuration for the Kconfig build system to use when building barebox.
+    The configuration for the `kbuild` build system to use when building
+    barebox.
 
     Default value: ``""``
 
