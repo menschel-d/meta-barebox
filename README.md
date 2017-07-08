@@ -4,41 +4,38 @@ barebox layer.
 Please see the corresponding sections below for details.
 
 
-Dependencies
-============
+# Dependencies
 
 This layer depends on:
 
-    URI: git://git.openembedded.org/bitbake
-    branch: master
+```
+URI: git://git.openembedded.org/bitbake
+branch: master
 
-    URI: git://git.openembedded.org/openembedded-core
-    layers: meta
-    branch: master
+URI: git://git.openembedded.org/openembedded-core
+layers: meta
+branch: master
+```
 
 
-Patches
-=======
+# Patches
 
 Please submit any patches against the barebox layer to the
 maintainer:
 
 
-Maintainers
------------
+## Maintainers
 
-- Dennis Menschel <menschel-d@posteo.de>
+- Dennis Menschel <<menschel-d@posteo.de>>
 
 
-Table of Contents
-=================
+# Table of Contents
 
  1. [Adding the barebox layer to your build](#adding-the-barebox-layer-to-your-build)
  2. [Additional documentation](#additional-documentation)
 
 
-Adding the barebox layer to your build
-======================================
+# Adding the barebox layer to your build
 
 In order to use this layer, you need to make the build system aware of
 it.
@@ -58,8 +55,7 @@ BBLAYERS ?= " \
 ```
 
 
-Additional documentation
-========================
+# Additional documentation
 
 The barebox layer has its own [reference manual](doc/ref-manual.md) with
 detailed information about its interface and how to use it.
