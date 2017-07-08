@@ -122,7 +122,8 @@ They are designed for the following use cases:
 - Renaming the output files such that they can be found by the ROM bootloader
   of a specific target hardware.
 
-<!-- -->
+
+The following output variables are provided:
 
 - `BAREBOX_IMAGE`\
   The complete file name of the generated image file without any
