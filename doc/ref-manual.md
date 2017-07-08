@@ -1,8 +1,8 @@
 # Reference Manual for `meta-barebox`
 
-  - **Author:**  Dennis Menschel <<menschel-d@posteo.de>>
-  - **Date:**    2017-07-08
-  - **Version:** Yocto 2.3 (pyro)
+- **Author:**  Dennis Menschel <<menschel-d@posteo.de>>
+- **Date:**    2017-07-08
+- **Version:** Yocto 2.3 (pyro)
 
 
 ## Table of contents
@@ -42,12 +42,12 @@ in terms of interface definition and usage guidelines.
 
 This layer provides the barebox bootloader along with the following features:
 
-  - Pure software layer that is not bound to a specific hardware BSP.
-  - Support for pre-bootloader.
-  - Support for target tools.
-  - Well-defined interface.
-  - Clean include-hierarchy for recipes to minimize redundancy.
-  - Documentation in form of a reference manual.
+- Pure software layer that is not bound to a specific hardware BSP.
+- Support for pre-bootloader.
+- Support for target tools.
+- Well-defined interface.
+- Clean include-hierarchy for recipes to minimize redundancy.
+- Documentation in form of a reference manual.
 
 
 ## Interface
@@ -69,40 +69,40 @@ Therefore these variables should be set in the machine configuration file
 inside some BSP layer.
 
 
-  - `BAREBOX_CONFIG`\
-    The configuration for the *kbuild* build system to use when building
-    barebox.
+- `BAREBOX_CONFIG`\
+  The configuration for the *kbuild* build system to use when building
+  barebox.
 
-    Default value: `""`
+  Default value: `""`
 
 
-  - `BAREBOX_IMAGE_SRC`\
-    This option is intended for configurations that produce multiple images
-    for different target variants.
-    In that case, an entry must be selected from the contents of the file
-    `barebox-flash-images` which will be located in the build directory of
-    barebox after it has been built once.
+- `BAREBOX_IMAGE_SRC`\
+  This option is intended for configurations that produce multiple images
+  for different target variants.
+  In that case, an entry must be selected from the contents of the file
+  `barebox-flash-images` which will be located in the build directory of
+  barebox after it has been built once.
 
-    For example, if you choose `BAREBOX_CONFIG = "am335x_defconfig"`,
-    then the contents of the aforementioned file might be as follows:
+  For example, if you choose `BAREBOX_CONFIG = "am335x_defconfig"`,
+  then the contents of the aforementioned file might be as follows:
 
-    ```ShellSession
-    $ cd <barebox build directory>
-    $ cat barebox-flash-images
-    images/barebox-am33xx-afi-gf.img
-    images/barebox-am33xx-phytec-phycore.img
-    images/barebox-am33xx-phytec-phycore-no-spi.img
-    images/barebox-am33xx-phytec-phycore-no-eeprom.img
-    images/barebox-am33xx-phytec-phycore-no-spi-no-eeprom.img
-    images/barebox-am33xx-phytec-phyflex.img
-    images/barebox-am33xx-phytec-phyflex-no-spi.img
-    images/barebox-am33xx-phytec-phyflex-no-eeprom.img
-    images/barebox-am33xx-phytec-phyflex-no-spi-no-eeprom.img
-    images/barebox-am33xx-phytec-phycard.img
-    images/barebox-am33xx-beaglebone.img
-    ```
+  ```ShellSession
+  $ cd <barebox build directory>
+  $ cat barebox-flash-images
+  images/barebox-am33xx-afi-gf.img
+  images/barebox-am33xx-phytec-phycore.img
+  images/barebox-am33xx-phytec-phycore-no-spi.img
+  images/barebox-am33xx-phytec-phycore-no-eeprom.img
+  images/barebox-am33xx-phytec-phycore-no-spi-no-eeprom.img
+  images/barebox-am33xx-phytec-phyflex.img
+  images/barebox-am33xx-phytec-phyflex-no-spi.img
+  images/barebox-am33xx-phytec-phyflex-no-eeprom.img
+  images/barebox-am33xx-phytec-phyflex-no-spi-no-eeprom.img
+  images/barebox-am33xx-phytec-phycard.img
+  images/barebox-am33xx-beaglebone.img
+  ```
 
-    Default value: `"barebox.bin"`
+  Default value: `"barebox.bin"`
 
 
 ### Output variables
@@ -111,63 +111,63 @@ The BitBake variables in this section influence how the generated output files
 will be organized in the deploy directory.
 They are designed for the following use cases:
 
-  - Further processing of the output files, e.g. by image recipes or 3rd party
-    tools.
-  - Renaming the output files such that they can be found by the ROM bootloader
-    of a specific target hardware.
+- Further processing of the output files, e.g. by image recipes or 3rd party
+  tools.
+- Renaming the output files such that they can be found by the ROM bootloader
+  of a specific target hardware.
 
 <!-- -->
 
-  - `BAREBOX_IMAGE`\
-    The complete file name of the generated image file without any
-    file extension.
+- `BAREBOX_IMAGE`\
+  The complete file name of the generated image file without any
+  file extension.
 
-    Default value: `"${BAREBOX_IMAGE_BASENAME}-${PV}-${PR}-${MACHINE}-${DATETIME}"`
-
-
-  - `BAREBOX_IMAGE_BASENAME`\
-    The basename for the bootloader image.
-    It is implicitly used to distinguish between the main bootloader and an
-    optional pre-bootloader.
-    If the ROM bootloader of the target hardware expects a specific file name
-    that is different from the default value, it can be adjusted with this
-    BitBake variable (and the appropriate suffix variable).
-
-    Default value: `"${PN}"`
+  Default value: `"${BAREBOX_IMAGE_BASENAME}-${PV}-${PR}-${MACHINE}-${DATETIME}"`
 
 
-  - `BAREBOX_IMAGE_SUFFIX`\
-    The file extension for the bootloader image.
+- `BAREBOX_IMAGE_BASENAME`\
+  The basename for the bootloader image.
+  It is implicitly used to distinguish between the main bootloader and an
+  optional pre-bootloader.
+  If the ROM bootloader of the target hardware expects a specific file name
+  that is different from the default value, it can be adjusted with this
+  BitBake variable (and the appropriate suffix variable).
 
-    Default value: `".bin"`
-
-
-  - `BAREBOX_IMAGE_SUFFIX_ELF`\
-    The file extension for the bootloader image in Executable and Linkable
-    Format (ELF).
-
-    Default value: `".elf"`
+  Default value: `"${PN}"`
 
 
-  - `BAREBOX_IMAGE_SUFFIX_PER`\
-    The file extension for the peripheral bootloader image.
+- `BAREBOX_IMAGE_SUFFIX`\
+  The file extension for the bootloader image.
 
-    Default value: `".per"`
-
-
-  - `BAREBOX_IMAGE_SUFFIX_SPI`\
-    The file extension for a specific image variant that can boot from SPI.
-    This is of relevance if you build `barebox-pbl` with the config option
-    `CONFIG_OMAP_BUILD_SPI`.
-
-    Default value: `".spi"`
+  Default value: `".bin"`
 
 
-  - `BAREBOX_IMAGE_SYMLINK`\
-    A symbolic name to the most recent build of the bootloader,
-    without any file extension.
+- `BAREBOX_IMAGE_SUFFIX_ELF`\
+  The file extension for the bootloader image in Executable and Linkable
+  Format (ELF).
 
-    Default value: `"${BAREBOX_IMAGE_BASENAME}"`
+  Default value: `".elf"`
+
+
+- `BAREBOX_IMAGE_SUFFIX_PER`\
+  The file extension for the peripheral bootloader image.
+
+  Default value: `".per"`
+
+
+- `BAREBOX_IMAGE_SUFFIX_SPI`\
+  The file extension for a specific image variant that can boot from SPI.
+  This is of relevance if you build `barebox-pbl` with the config option
+  `CONFIG_OMAP_BUILD_SPI`.
+
+  Default value: `".spi"`
+
+
+- `BAREBOX_IMAGE_SYMLINK`\
+  A symbolic name to the most recent build of the bootloader,
+  without any file extension.
+
+  Default value: `"${BAREBOX_IMAGE_BASENAME}"`
 
 
 ## Common tasks
@@ -340,10 +340,10 @@ output files in `${DEPLOYDIR}/${PN}-${PV}` respectively.
 In order for the ROM bootloader on the BeagleBone to boot from a microSD card
 (MMC), this card needs to meet the following requirements:
 
-  - It must contain a DOS-style partition table.
-  - The first primary partition must be formatted with FAT32 and its
-    bootable flag must be set. If this partition contains a file called `MLO`,
-    the ROM bootloader will load it.
+- It must contain a DOS-style partition table.
+- The first primary partition must be formatted with FAT32 and its
+  bootable flag must be set. If this partition contains a file called `MLO`,
+  the ROM bootloader will load it.
 
 More information can be obtained from section 26.1.8.5 "MMC / SD Cards" of the
 [Technical Reference Manual for the TI AM335x Sitara processor family][].
@@ -581,16 +581,16 @@ This is a list of frequently answered questions.
 According to the [OpenEmbedded Layer Index][] there are already a couple of
 layers that provide a recipe for barebox:
 
-  - [meta-freescale][]
-    A BSP layer for current Freescale products.
+- [meta-freescale][]
+  A BSP layer for current Freescale products.
 
-  - [meta-fsl-arm][]
-    An older BSP layer from Freescale that doesn't seem to receive updates
-    any more. It provides Yocto support up to version 2.1 (krogoth).
+- [meta-fsl-arm][]
+  An older BSP layer from Freescale that doesn't seem to receive updates
+  any more. It provides Yocto support up to version 2.1 (krogoth).
 
-  - [meta-phytec][]
-    A BSP layer from Phytec for their products. It uses a custom barebox
-    git repository.
+- [meta-phytec][]
+  A BSP layer from Phytec for their products. It uses a custom barebox
+  git repository.
 
 The aforementioned BSP layers all provide different barebox recipes which are
 specifically designed for their target machine configurations.
@@ -606,29 +606,29 @@ So why was `meta-barebox` created when such an ideal candidate like
 `meta-ptx` already exists?
 Well, there are multiple reasons:
 
-  - By the time I was searching for an appropriate software layer which
-    provides barebox, I wasn't aware of the existence of `meta-ptx`
-    because it was simply not included in the OpenEmbedded Layer Index.
-    In fact, by the time of writing this reference manual (2017-06-18),
-    `meta-ptx` is still not listed in the layer index.
-    As a result, I decided to create a new layer specifically designed
-    for barebox to fill the gap.
-  - As it turns out, `meta-ptx` seems to be a mixture of software layer
-    and distribution layer.
-    On the one hand, it provides new recipes for software like barebox.
-    On the other hand, it also modifies existing recipes like
-    [packagegroup-core-boot][] and [busybox][] which are part of the
-    `meta` layer.
-    That means using the `meta-ptx` layer can have an impact on recipes
-    from other layers as well, which might not always be desirable.
-    In contrast, using `meta-barebox` doesn't produce such side effects.
-  - One of the goals of the `meta-barebox` layer is to define a clear and
-    stable interface that covers the most important features of barebox.
-    Such an interface still seems to be missing in the Yocto/OpenEmbedded
-    landscape, which also prevents barebox from gaining popularity and
-    being included in one of the official Yocto/OE layers.
-    You can look at `meta-barebox` as an attempt to speed up this
-    unification process.
+- By the time I was searching for an appropriate software layer which
+  provides barebox, I wasn't aware of the existence of `meta-ptx`
+  because it was simply not included in the OpenEmbedded Layer Index.
+  In fact, by the time of writing this reference manual (2017-06-18),
+  `meta-ptx` is still not listed in the layer index.
+  As a result, I decided to create a new layer specifically designed
+  for barebox to fill the gap.
+- As it turns out, `meta-ptx` seems to be a mixture of software layer
+  and distribution layer.
+  On the one hand, it provides new recipes for software like barebox.
+  On the other hand, it also modifies existing recipes like
+  [packagegroup-core-boot][] and [busybox][] which are part of the
+  `meta` layer.
+  That means using the `meta-ptx` layer can have an impact on recipes
+  from other layers as well, which might not always be desirable.
+  In contrast, using `meta-barebox` doesn't produce such side effects.
+- One of the goals of the `meta-barebox` layer is to define a clear and
+  stable interface that covers the most important features of barebox.
+  Such an interface still seems to be missing in the Yocto/OpenEmbedded
+  landscape, which also prevents barebox from gaining popularity and
+  being included in one of the official Yocto/OE layers.
+  You can look at `meta-barebox` as an attempt to speed up this
+  unification process.
 
 [OpenEmbedded Layer Index]:
 <https://layers.openembedded.org>
