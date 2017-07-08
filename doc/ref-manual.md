@@ -581,14 +581,14 @@ This is a list of frequently answered questions.
 According to the [OpenEmbedded Layer Index][] there are already a couple of
 layers that provide a recipe for barebox:
 
-- [meta-freescale][]
+- [meta-freescale][]\
   A BSP layer for current Freescale products.
 
-- [meta-fsl-arm][]
+- [meta-fsl-arm][]\
   An older BSP layer from Freescale that doesn't seem to receive updates
   any more. It provides Yocto support up to version 2.1 (krogoth).
 
-- [meta-phytec][]
+- [meta-phytec][]\
   A BSP layer from Phytec for their products. It uses a custom barebox
   git repository.
 
