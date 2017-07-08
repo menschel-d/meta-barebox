@@ -351,7 +351,7 @@ while pressing the boot switch on the BBB, so that it will not boot from its
 internal eMMC flash.
 The output on UART0 should look similar to the following::
 
-    $ picocom -b 115200 /dev/ttyUSB0                                                                                                                                                                   ~
+    $ picocom -b 115200 /dev/ttyUSB0
     picocom v1.7
 
     port is        : /dev/ttyUSB0
