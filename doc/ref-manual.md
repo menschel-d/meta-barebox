@@ -616,7 +616,7 @@ Well, there are multiple reasons:
 - By the time I was searching for an appropriate software layer which
   provides barebox, I wasn't aware of the existence of `meta-ptx`
   because it was simply not included in the OpenEmbedded Layer Index.
-  In fact, by the time of writing this reference manual (2017-06-18),
+  In fact, by the time of writing this reference manual (2017-07-08),
   `meta-ptx` is still not listed in the layer index.
   As a result, I decided to create a new layer specifically designed
   for barebox to fill the gap.
