@@ -5,6 +5,29 @@
   - **Version:** Yocto 2.3 (pyro)
 
 
+## Table of contents
+
+1. [Intro](#intro)
+   1. [Features](#features)
+2. [Interface](#interface)
+   1. [Input variables](#input-variables)
+   2. [Output variables](#output-variables)
+3. [Common tasks](#common-tasks)
+   1. [Machine configuration](#machine-configuration)
+   2. [Barebox configuration](#barebox-configuration)
+   3. [Default environment modification](#default-environment-modification)
+4. [Examples](#examples)
+   1. [BeagleBone Black](#beaglebone-black)
+      1. [Machine configuration](#machine-configuration)
+      2. [Building barebox](#building-barebox)
+      3. [Booting from microSD card](#booting-from-microsd-card)
+      4. [Booting from UART0](#booting-from-uart0)
+5. [FAQ](#faq)
+   1. [Why a separate layer for the bootloader barebox?](#why-a-separate-layer-for-the-bootloader-barebox)
+   2. [Can the interface of this layer be considered stable?](#can-the-interface-of-this-layer-be-considered-stable)
+6. [Todo](#todo)
+
+
 ## Intro
 
 This document is a reference manual for the `meta-barebox` layer.
