@@ -4,6 +4,12 @@
 - **Date:**    2017-07-08
 - **Version:** Yocto 2.3 (pyro)
 
+This work is licensed under a
+[Creative Commons Attribution-ShareAlike 4.0 International License][].
+
+[Creative Commons Attribution-ShareAlike 4.0 International License]:
+<http://creativecommons.org/licenses/by-sa/4.0/>
+
 
 ## Table of contents
 
