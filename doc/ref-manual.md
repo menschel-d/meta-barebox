@@ -1,7 +1,7 @@
 # Reference Manual for `meta-barebox`
 
 - **Author:**  Dennis Menschel <<menschel-d@posteo.de>>
-- **Date:**    2017-07-08
+- **Date:**    2017-07-09
 - **Version:** Yocto 2.3 (pyro)
 
 This work is licensed under a
@@ -46,7 +46,8 @@ in terms of interface definition and usage guidelines.
 
 ### Features
 
-This layer provides the barebox bootloader along with the following features:
+This layer provides the [barebox][] bootloader along with the following
+features:
 
 - Pure software layer that is not bound to a specific hardware BSP.
 - Support for pre-bootloader.
@@ -54,6 +55,9 @@ This layer provides the barebox bootloader along with the following features:
 - Well-defined interface.
 - Clean include-hierarchy for recipes to minimize redundancy.
 - Documentation in form of a reference manual.
+
+[barebox]:
+<http://barebox.org>
 
 
 ## Interface
@@ -264,12 +268,12 @@ With its environment framework, barebox already provides a versatile
 infrastructure to construct its default environment from a sequence
 of overlays.
 
-| Directory                       |  Description           |
-| ------------------------------- | ---------------------- |
-| `defaultenv/defaultenv-2-base`  | base files             |
-| `defaultenv/defaultenv-2-dfu`   | overlay for DFU        |
-| `defaultenv/defaultenv-2-menu`  | overlay for menus      |
-| `arch/$ARCH/boards/<board>/env` | board specific overlay |
+| Directory                        |  Description           |
+| -------------------------------- | ---------------------- |
+| `defaultenv/defaultenv-2-base`   | base files             |
+| `defaultenv/defaultenv-2-dfu`    | overlay for DFU        |
+| `defaultenv/defaultenv-2-menu`   | overlay for menus      |
+| `arch/<arch>/boards/<board>/env` | board specific overlay |
 
 Therefore, you can just choose the overlay that best fits your purpose
 and modify it accordingly.
@@ -278,7 +282,7 @@ distribution layer to achieve a common behavior regardless of the board
 on which it will run, it might be reasonable to patch the base overlay.
 If you  work on a BSP layer instead, the preferred way would be to modify
 the board specific overlay accordingly.
-More information can be obtained by reading the official documentation on
+More information can be obtained by reading the official documentation of
 the [Barebox Default Environment Version 2][].
 
 [Barebox Default Environment Version 2]:
@@ -337,7 +341,7 @@ $ bitbake barebox
 ```
 
 As we have listed `barebox-pbl` to be a runtime-dependency of `barebox`,
-it will automatically be built along with the main bootloader.
+it will be built automatically along with the main bootloader.
 The recipes `barebox` and `barebox-pbl` will each deploy their
 output files in `${DEPLOYDIR}/${PN}-${PV}` respectively.
 
@@ -616,7 +620,7 @@ Well, there are multiple reasons:
 - By the time I was searching for an appropriate software layer which
   provides barebox, I wasn't aware of the existence of `meta-ptx`
   because it was simply not included in the OpenEmbedded Layer Index.
-  In fact, by the time of writing this reference manual (2017-07-08),
+  In fact, by the time of writing this reference manual (2017-07-09),
   `meta-ptx` is still not listed in the layer index.
   As a result, I decided to create a new layer specifically designed
   for barebox to fill the gap.
@@ -688,4 +692,19 @@ the transition from one Yocto release to another.
 ## Todo
 
 - [ ] Add support for sandbox configuration.
-
+- [ ] Add support for a default configuration file `defconfig` similar
+  to e.g. `kernel.bbclass`.
+  In the long run, this feature might be more appropriate for the base
+  class `cml1.bbclass`.
+- [ ] Add support for automatic inclusion of device tree files from the
+  `SRC_URI` variable into the source tree of barebox.
+  This feature would require to know where a `*.dts` or `*.dtsi` file
+  should be placed.
+  The barebox sources contain device tree files in `dts/src/<arch>/`
+  that originate from the Linux kernel sources.
+  Furthermore, there are barebox-specific device tree files located in
+  `arch/<arch>/dts/`.
+  If you want to add support for a new board in a BSP layer, you usually
+  need to add mutliple `*.dts` and `*.dtsi` files in both locations.
+  The current way to do this is to append the `patch` task of the
+  barebox recipes.
