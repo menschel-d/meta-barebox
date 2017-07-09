@@ -1,10 +1,35 @@
+# `meta-barebox`
+
+`meta-barebox` is a software layer for the [Yocto Project][] and
+[OpenEmbedded][] build system which provides Support for the
+[barebox][] bootloader.
+
+[Yocto Project]:
+<https://www.yoctoproject.org>
+
+[OpenEmbedded]:
+<http://www.openembedded.org>
+
+[barebox]:
+<http://barebox.org>
+
+
 This `README.md` file contains information on the contents of the
 barebox layer.
 
 Please see the corresponding sections below for details.
 
 
-# Dependencies
+## Table of contents
+
+1. [Dependencies](#dependencies)
+2. [Contributing](#contributing)
+   1. [Maintainers](#maintainers)
+3. [Adding the barebox layer to your build](#adding-the-barebox-layer-to-your-build)
+4. [Additional documentation](#additional-documentation)
+
+
+## Dependencies
 
 This layer depends on:
 
@@ -18,7 +43,7 @@ branch: master
 ```
 
 
-# Contributing
+## Contributing
 
 Please use the infrastructure provided by GitHub to submit [pull requests][]
 or [report issues][issue tracker].
@@ -33,18 +58,12 @@ to the maintainers listed below.
 <https://github.com/menschel-d/meta-barebox/pulls>
 
 
-## Maintainers
+### Maintainers
 
 - Dennis Menschel <<menschel-d@posteo.de>>
 
 
-# Table of Contents
-
- 1. [Adding the barebox layer to your build](#adding-the-barebox-layer-to-your-build)
- 2. [Additional documentation](#additional-documentation)
-
-
-# Adding the barebox layer to your build
+## Adding the barebox layer to your build
 
 In order to use this layer, you need to make the build system aware of
 it.
@@ -64,7 +83,7 @@ BBLAYERS ?= " \
 ```
 
 
-# Additional documentation
+## Additional documentation
 
 The barebox layer has its own [reference manual](doc/ref-manual.md) with
 detailed information about its interface and how to use it.
