@@ -18,10 +18,19 @@ branch: master
 ```
 
 
-# Patches
+# Contributing
 
-Please submit any patches against the barebox layer to the
-maintainer:
+Please use the infrastructure provided by GitHub to submit [pull requests][]
+or [report issues][issue tracker].
+
+If you don't have a GitHub account, you can alternatively send your patches
+to the maintainers listed below.
+
+[issue tracker]:
+<https://github.com/menschel-d/meta-barebox/issues>
+
+[pull requests]:
+<https://github.com/menschel-d/meta-barebox/pulls>
 
 
 ## Maintainers
