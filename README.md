@@ -1,7 +1,7 @@
 # `meta-barebox`
 
 `meta-barebox` is a software layer for the [Yocto Project][] and
-[OpenEmbedded][] build system which provides Support for the
+[OpenEmbedded][] build system which provides support for the
 [barebox][] bootloader.
 
 [Yocto Project]:
@@ -15,7 +15,7 @@
 
 
 This `README.md` file contains information on the contents of the
-barebox layer.
+`meta-barebox` layer.
 
 Please see the corresponding sections below for details.
 
@@ -25,7 +25,7 @@ Please see the corresponding sections below for details.
 1. [Dependencies](#dependencies)
 2. [Contributing](#contributing)
    1. [Maintainers](#maintainers)
-3. [Adding the barebox layer to your build](#adding-the-barebox-layer-to-your-build)
+3. [Adding meta-barebox to your build](#adding-meta-barebox-to-your-build)
 4. [Additional documentation](#additional-documentation)
 
 
@@ -63,14 +63,14 @@ to the maintainers listed below.
 - Dennis Menschel <<menschel-d@posteo.de>>
 
 
-## Adding the barebox layer to your build
+## Adding `meta-barebox` to your build
 
 In order to use this layer, you need to make the build system aware of
 it.
 
-Assuming the barebox layer exists at the top-level of your
+Assuming the `meta-barebox` layer exists at the top-level of your
 yocto build tree, you can add it to the build system by adding the
-location of the barebox layer to bblayers.conf, along with any
+location of the `meta-barebox` layer to `bblayers.conf`, along with any
 other layers needed. e.g.:
 
 ```BitBake
