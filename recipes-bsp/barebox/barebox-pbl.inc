@@ -1,4 +1,4 @@
-require barebox-common.inc
+require recipes-bsp/barebox/barebox-common.inc
 
 SUMMARY = "Versatile Linux-like bootloader for embedded systems (pre-bootloader)"
 DESCRIPTION = "The pre-bootloader is a minimalistic version of barebox. \

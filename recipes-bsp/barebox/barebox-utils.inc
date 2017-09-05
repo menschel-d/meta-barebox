@@ -1,4 +1,4 @@
-require barebox-common.inc
+require recipes-bsp/barebox/barebox-common.inc
 
 SUMMARY = "Versatile Linux-like bootloader for embedded systems (target tools)"
 DESCRIPTION = "The target tools are used to interact with the barebox bootloader \
