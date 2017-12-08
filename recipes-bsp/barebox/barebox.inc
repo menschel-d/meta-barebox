@@ -9,3 +9,6 @@ barebox is the self-proclaimed Swiss Army Knife for bare metal."
 
 PROVIDES = "virtual/bootloader"
 
+PACKAGE_ARCH = "${MACHINE_ARCH}"
+
+COMPATIBLE_MACHINE = "(^$)"

@@ -10,8 +10,6 @@ SRC_URI += " \
     file://target-utils.cfg \
 "
 
-PACKAGE_ARCH="${TUNE_PKGARCH}"
-
 export TARGETCFLAGS="${TARGET_CC_ARCH} ${TOOLCHAIN_OPTIONS} ${CFLAGS} ${LDFLAGS}"
 
 do_install() {
@@ -37,4 +35,3 @@ do_install[dirs] += "${D}/${sbindir}"
 do_deploy[noexec] = "1"
 
 COMPATIBLE_MACHINE = "${COMPATIBLE_MACHINE_pn-barebox}"
-

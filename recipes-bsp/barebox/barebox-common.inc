@@ -11,7 +11,3 @@ S = "${WORKDIR}/git"
 B = "${WORKDIR}/build"
 
 inherit barebox
-
-PACKAGE_ARCH = "${MACHINE_ARCH}"
-
-COMPATIBLE_MACHINE = "(^$)"
