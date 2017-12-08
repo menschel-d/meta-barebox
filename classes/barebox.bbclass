@@ -1,3 +1,5 @@
+DEPENDS_prepend = "lzop-native "
+
 inherit cml1
 inherit deploy
 inherit kernel-arch
@@ -13,7 +15,7 @@ BAREBOX_IMAGE_SRC ??= "barebox.bin"
 
 BAREBOX_IMAGE_BASENAME ??= "${PN}"
 BAREBOX_IMAGE ??= "${BAREBOX_IMAGE_BASENAME}-${PV}-${PR}-${MACHINE}-${DATETIME}"
-BAREBOX_IMAGE[vardepsexclude] = "DATETIME"
+BAREBOX_IMAGE[vardepsexclude] += "DATETIME"
 BAREBOX_IMAGE_SYMLINK ??= "${BAREBOX_IMAGE_BASENAME}"
 BAREBOX_IMAGE_SUFFIX ??= ".bin"
 
@@ -21,14 +23,14 @@ BAREBOX_IMAGE_SUFFIX_ELF ??= ".elf"
 BAREBOX_IMAGE_SUFFIX_SPI ??= ".spi"
 BAREBOX_IMAGE_SUFFIX_PER ??= ".per"
 
-EXTRA_OEMAKE = ' \
+EXTRA_OEMAKE_prepend = ' \
     -C "${S}" \
     O="${B}" \
     CROSS_COMPILE="${TARGET_PREFIX}" \
     ARCH="${BAREBOX_ARCH}" \
 '
 
-DEPLOYSUBDIR = "${DEPLOYDIR}/${PN}-${PV}"
+DEPLOYSUBDIR ?= "${DEPLOYDIR}/${PN}-${PV}"
 do_deploy[dirs] += "${DEPLOYSUBDIR}"
 
 def find_cfgs(d):
@@ -62,7 +64,7 @@ apply_cfgs() {
     fi
 }
 
-do_configure() {
+barebox_do_configure() {
     set -e
     unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
 
@@ -74,13 +76,13 @@ do_configure() {
     apply_cfgs
 }
 
-do_compile() {
+barebox_do_compile() {
     set -e
     unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
     oe_runmake all
 }
 
-do_deploy() {
+barebox_do_deploy() {
     set -e
 
     # Deploy main image.
@@ -99,3 +101,4 @@ do_deploy() {
 }
 
 addtask deploy before do_build after do_compile
+EXPORT_FUNCTIONS do_configure do_compile do_deploy
