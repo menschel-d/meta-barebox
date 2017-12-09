@@ -25,7 +25,7 @@ BAREBOX_IMAGE_SUFFIX_PER ??= ".per"
 
 EXTRA_OEMAKE_prepend = ' \
     -C "${S}" \
-    O="${B}" \
+    KBUILD_OUTPUT="${B}" \
     CROSS_COMPILE="${TARGET_PREFIX}" \
     ARCH="${BAREBOX_ARCH}" \
 '
