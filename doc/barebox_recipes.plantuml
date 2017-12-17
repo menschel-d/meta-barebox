@@ -9,7 +9,7 @@ package "meta" {
 }
 
 package "meta-barebox" {
-	class BareboxCommonInc as "barebox-common.inc" << (I, yellow) >> {
+	class Barebox as "barebox.bbclass" {
 		.. Input Variables ..
 		BAREBOX_CONFIG
 		BAREBOX_IMAGE_SRC
@@ -28,6 +28,9 @@ package "meta-barebox" {
 		+do_configure()
 		+do_compile()
 		+do_deploy()
+	}
+
+	class BareboxCommonInc as "barebox-common.inc" << (I, yellow) >> {
 	}
 
 	class BareboxInc as "barebox.inc" << (I, yellow) >> {
@@ -64,11 +67,11 @@ package "meta-barebox" {
 	BareboxUtilsInc <-- BareboxUtilsBb : require
 }
 
-Cml1 <|-- BareboxCommonInc
-Deploy <|-- BareboxCommonInc
-KernelArch <|-- BareboxCommonInc
+Cml1 <|-- Barebox
+Deploy <|-- Barebox
+KernelArch <|-- Barebox
+Barebox <|-- BareboxCommonInc
 
 hide empty members
 
 @enduml
-
