@@ -10,18 +10,33 @@ BAREBOX_ARCH ?= "${UBOOT_ARCH}"
 
 # Analogue to UBOOT_MACHINE
 BAREBOX_CONFIG ??= ""
+BAREBOX_CONFIG[doc] = "The configuration for the *kbuild* build system to use when building barebox."
 
 BAREBOX_IMAGE_SRC ??= "barebox.bin"
+BAREBOX_IMAGE_SRC[doc] = "This option is intended for configurations that produce multiple images for different target variants. In that case, an entry must be selected from the contents of the file `barebox-flash-images` which will be located in the build directory of barebox after it has been built once."
 
 BAREBOX_IMAGE_BASENAME ??= "${PN}"
+BAREBOX_IMAGE_BASENAME[doc] = "The basename for the bootloader image. It is implicitly used to distinguish between the main bootloader and an optional pre-bootloader. If the ROM bootloader of the target hardware expects a specific file name that is different from the default value, it can be adjusted with this BitBake variable (and the appropriate suffix variable)."
+
 BAREBOX_IMAGE ??= "${BAREBOX_IMAGE_BASENAME}-${PV}-${PR}-${MACHINE}-${DATETIME}"
 BAREBOX_IMAGE[vardepsexclude] += "DATETIME"
+BAREBOX_IMAGE[doc] = "The complete file name of the generated image file without any file extension."
+
 BAREBOX_IMAGE_SYMLINK ??= "${BAREBOX_IMAGE_BASENAME}"
+BAREBOX_IMAGE_SYMLINK[doc] = "A symbolic name to the most recent build of the bootloader, without any file extension."
+
 BAREBOX_IMAGE_SUFFIX ??= ".bin"
+BAREBOX_IMAGE_SUFFIX[doc] = "The file extension for the bootloader image."
 
 BAREBOX_IMAGE_SUFFIX_ELF ??= ".elf"
+BAREBOX_IMAGE_SUFFIX_ELF[doc] = "The file extension for the bootloader image in Executable and Linkable Format (ELF)."
+
 BAREBOX_IMAGE_SUFFIX_SPI ??= ".spi"
+BAREBOX_IMAGE_SUFFIX_SPI[doc] = "The file extension for a specific image variant that can boot from SPI. This is of relevance if you build `barebox-pbl` with the config option `CONFIG_OMAP_BUILD_SPI`."
+
 BAREBOX_IMAGE_SUFFIX_PER ??= ".per"
+BAREBOX_IMAGE_SUFFIX_PER[doc] = "The file extension for the peripheral bootloader image."
+
 
 EXTRA_OEMAKE_prepend = ' \
     -C "${S}" \
