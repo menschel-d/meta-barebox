@@ -692,7 +692,7 @@ the transition from one Yocto release to another.
 ## Todo
 
 - [ ] Add support for sandbox configuration.
-- [ ] Add support for a default configuration file `defconfig` similar
+- [x] Add support for a default configuration file `defconfig` similar
   to e.g. `kernel.bbclass`.
   In the long run, this feature might be more appropriate for the base
   class `cml1.bbclass`.

@@ -51,7 +51,6 @@ BAREBOX_IMAGE_SUFFIX_SPI[doc] = "The file extension for a specific image variant
 BAREBOX_IMAGE_SYMLINK ??= "${BAREBOX_IMAGE_BASENAME}"
 BAREBOX_IMAGE_SYMLINK[doc] = "A symbolic name to the most recent build of the bootloader, without any file extension."
 
-BAREBOX_CONFIG_COMMAND ?= "oe_runmake_call -C ${S} O=${B} oldnoconfig || yes '' | oe_runmake -C ${S} O=${B} oldconfig"
 
 EXTRA_OEMAKE_prepend = ' \
     -C "${S}" \
@@ -101,8 +100,8 @@ barebox_do_configure() {
     if [ -f "${WORKDIR}/defconfig" ]
     then
         bbnote "Using config supplied from SRC_URI"
-        cp ${WORKDIR}/defconfig ${B}/.config
-        ${BAREBOX_CONFIG_COMMAND}
+        cp "${WORKDIR}/defconfig" "${B}/.config"
+        oe_runmake olddefconfig
     elif [ ! -z "${BAREBOX_CONFIG}" ]
     then
         bbnote "Using default config: ${BAREBOX_CONFIG}"
