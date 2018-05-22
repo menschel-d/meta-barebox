@@ -12,6 +12,11 @@ SRC_URI += " \
 
 BAREBOX_ARCH = "sandbox"
 
+EXTRA_OEMAKE_prepend = ' \
+    CC="${CC}" \
+    CPP="${CPP}" \
+'
+
 # Fixes error "do_package_qa: QA Issue: No GNU_HASH in the elf binary"
 TARGET_CC_ARCH += "${LDFLAGS}"
 

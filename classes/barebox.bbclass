@@ -57,8 +57,6 @@ EXTRA_OEMAKE_prepend = ' \
     KBUILD_OUTPUT="${B}" \
     CROSS_COMPILE="${TARGET_PREFIX}" \
     ARCH="${BAREBOX_ARCH}" \
-    CC="${CC}" \
-    CPP="${CPP}" \
 '
 
 DEPLOYSUBDIR ?= "${DEPLOYDIR}/${PN}-${PV}"
