@@ -1,8 +1,8 @@
 # Reference Manual for `meta-barebox`
 
 - **Author:**  Dennis Menschel <<menschel-d@posteo.de>>
-- **Date:**    2017-12-17
-- **Version:** Yocto 2.4 (rocko)
+- **Date:**    2018-08-04
+- **Version:** Yocto 2.5 (sumo)
 
 This work is licensed under a
 [Creative Commons Attribution-ShareAlike 4.0 International License][].
@@ -305,7 +305,7 @@ Therefore we can edit `conf/local.conf` in the build directory and simply
 select it:
 
 ```BitBake
-MACHINE = "beaglebone"
+MACHINE = "beaglebone-yocto"
 ```
 
 
@@ -316,13 +316,13 @@ This can be accomplished by appending the following lines to
 `conf/local.conf`:
 
 ```BitBake
-BAREBOX_CONFIG_beaglebone = "am335x_defconfig"
-BAREBOX_CONFIG_pn-barebox-pbl_beaglebone = "am335x_mlo_defconfig"
-BAREBOX_IMAGE_SRC_beaglebone = "images/barebox-am33xx-beaglebone.img"
-BAREBOX_IMAGE_SRC_pn-barebox-pbl_beaglebone = "images/barebox-am33xx-beaglebone-mlo.img"
-RDEPENDS_barebox_beaglebone += "barebox-pbl"
-COMPATIBLE_MACHINE_pn-barebox_beaglebone = "beaglebone"
-COMPATIBLE_MACHINE_pn-barebox-pbl_beaglebone = "beaglebone"
+BAREBOX_CONFIG_beaglebone-yocto = "am335x_defconfig"
+BAREBOX_CONFIG_pn-barebox-pbl_beaglebone-yocto = "am335x_mlo_defconfig"
+BAREBOX_IMAGE_SRC_beaglebone-yocto = "images/barebox-am33xx-beaglebone.img"
+BAREBOX_IMAGE_SRC_pn-barebox-pbl_beaglebone-yocto = "images/barebox-am33xx-beaglebone-mlo.img"
+RDEPENDS_barebox_beaglebone-yocto += "barebox-pbl"
+COMPATIBLE_MACHINE_pn-barebox_beaglebone-yocto = "beaglebone-yocto"
+COMPATIBLE_MACHINE_pn-barebox-pbl_beaglebone-yocto = "beaglebone-yocto"
 ```
 
 This sets the config for both bootloader parts and also lists the
@@ -465,7 +465,7 @@ be put in a file called `boot_uart.sh` in the BitBake build directory:
 #!/bin/sh
 tty="/dev/ttyUSB0"
 baudrate="115200"
-deploy_dir="tmp/deploy/images/beaglebone"
+deploy_dir="tmp/deploy/images/beaglebone-yocto"
 mlo="${deploy_dir}/barebox-pbl/MLO.per"
 barebox="${deploy_dir}/barebox/barebox.bin"
 
@@ -509,11 +509,11 @@ In the case of success, the output should look like follows:
 
 ```ShellSession
 $ ./boot_uart.sh
-Sending tmp/deploy/images/beaglebone/barebox-pbl/MLO.per, 615 blocks: Give your local XMODEM receive command now.
+Sending tmp/deploy/images/beaglebone-yocto/barebox-pbl/MLO.per, 615 blocks: Give your local XMODEM receive command now.
 Bytes Sent:  78848   BPS:2340
 
 Transfer complete
-Sending tmp/deploy/images/beaglebone/barebox/barebox.bin, 3288 blocks: Give your local XMODEM receive command now.
+Sending tmp/deploy/images/beaglebone-yocto/barebox/barebox.bin, 3288 blocks: Give your local XMODEM receive command now.
 Xmodem sectors/kbytes sent:   0/ 0kRetry 0: Got 45 for sector ACK
 Retry 0: NAK on sector
 Bytes Sent: 420992   BPS:7972
