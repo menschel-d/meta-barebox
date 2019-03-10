@@ -93,7 +93,7 @@ inside some BSP layer.
   `barebox-flash-images` which will be located in the build directory of
   barebox after it has been built once.
 
-  For example, if you choose `BAREBOX_CONFIG = "am335x_defconfig"`,
+  For example, if you choose `BAREBOX_CONFIG = "omap_defconfig"`,
   then the contents of the aforementioned file might be as follows:
 
   ```ShellSession
@@ -316,7 +316,7 @@ This can be accomplished by appending the following lines to
 `conf/local.conf`:
 
 ```BitBake
-BAREBOX_CONFIG_beaglebone-yocto = "am335x_defconfig"
+BAREBOX_CONFIG_beaglebone-yocto = "omap_defconfig"
 BAREBOX_CONFIG_pn-barebox-pbl_beaglebone-yocto = "am335x_mlo_defconfig"
 BAREBOX_IMAGE_SRC_beaglebone-yocto = "images/barebox-am33xx-beaglebone.img"
 BAREBOX_IMAGE_SRC_pn-barebox-pbl_beaglebone-yocto = "images/barebox-am33xx-beaglebone-mlo.img"
