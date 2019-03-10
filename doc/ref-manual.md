@@ -1,8 +1,8 @@
 # Reference Manual for `meta-barebox`
 
 - **Author:**  Dennis Menschel <<menschel-d@posteo.de>>
-- **Date:**    2018-08-04
-- **Version:** Yocto 2.5 (sumo)
+- **Date:**    2019-03-10
+- **Version:** Yocto 2.6 (thud)
 
 This work is licensed under a
 [Creative Commons Attribution-ShareAlike 4.0 International License][].
