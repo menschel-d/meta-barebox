@@ -1,8 +1,8 @@
 # Reference Manual for `meta-barebox`
 
 - **Author:**  Dennis Menschel <<menschel-d@posteo.de>>
-- **Date:**    2019-03-10
-- **Version:** Yocto 2.6 (thud)
+- **Date:**    2019-05-17
+- **Version:** Yocto 2.7 (warrior)
 
 This work is licensed under a
 [Creative Commons Attribution-ShareAlike 4.0 International License][].
@@ -28,6 +28,7 @@ This work is licensed under a
       2. [Building barebox](#building-barebox)
       3. [Booting from microSD card](#booting-from-microsd-card)
       4. [Booting from UART0](#booting-from-uart0)
+   2. [Raspberry Pi](#raspberry-pi)
 5. [FAQ](#faq)
    1. [Why a separate layer for the bootloader barebox?](#why-a-separate-layer-for-the-bootloader-barebox)
    2. [Can the interface of this layer be considered stable?](#can-the-interface-of-this-layer-be-considered-stable)
@@ -580,6 +581,82 @@ barebox@TI AM335x BeagleBone black:/
 
 By examining the barebox variable `${bootsource}`, we can validate that
 barebox has booted from the BBB's first serial interface, i.e. UART0.
+
+
+### Raspberry Pi
+
+This short example focuses on the ubiquitous Raspberry Pi.
+For this example, we're going to use a Raspberry Pi 2B which is supported by
+the BSP layer [meta-raspberrypi][].
+After adding this layer to `conf/bblayers.conf`, we need to append the
+following lines to `conf/local.conf`:
+
+```BitBake
+MACHINE = "raspberrypi2"
+
+BAREBOX_CONFIG_raspberrypi2 = "rpi_defconfig"
+BAREBOX_IMAGE_SRC_raspberrypi2 = "images/barebox-raspberry-pi-2.img"
+COMPATIBLE_MACHINE_pn-barebox_raspberrypi2 = "raspberrypi2"
+```
+
+Now that the machine configuration of the Raspberry Pi 2 has been extended, we
+can invoke BitBake to build barebox:
+
+```ShellSession
+$ bitbake barebox
+```
+
+The resulting image can be found at
+`tmp/deploy/images/raspberrypi2/barebox/barebox.bin`.
+
+For further information on how to boot the resulting Barebox image from MMC
+please consult the official [Barebox documentation for the Raspberry Pi][].
+Below is a sample output from UART0 when booting from MMC:
+
+```ShellSession
+$ picocom -b 115200 /dev/ttyUSB0
+picocom v2.2
+
+port is        : /dev/ttyUSB0
+flowcontrol    : none
+baudrate is    : 115200
+parity is      : none
+databits are   : 8
+stopbits are   : 1
+escape is      : C-a
+local echo is  : no
+noinit is      : no
+noreset is     : no
+nolock is      : no
+send_cmd is    : sz -vv
+receive_cmd is : rz -vv -E
+imap is        :
+omap is        :
+emap is        : crcrlf,delbs,
+
+Type [C-a] [C-h] to see available commands
+
+Terminal ready
+
+
+barebox 2019.05.0 #1 Fri May 17 16:02:49 UTC 2019
+
+
+Board: RaspberryPi Model 2B
+bcm2835-gpio 3f200000.gpio@7e200000.of: probed gpiochip-1 with base 0
+malloc space: 0x0fe7e580 -> 0x1fcfcaff (size 254.5 MiB)
+no /dev/disk0.0. using default env
+running /env/bin/init...
+
+Hit any key to stop autoboot:    1
+barebox@RaspberryPi Model 2B:/
+```
+
+[meta-raspberrypi]:
+<http://layers.openembedded.org/layerindex/branch/master/layer/meta-raspberrypi/>
+
+[Barebox documentation for the Raspberry Pi]:
+<https://www.barebox.org/doc/latest/boards/bcm2835.html#raspberry-pi>
 
 
 ## FAQ
