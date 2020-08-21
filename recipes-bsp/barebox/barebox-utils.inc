@@ -10,7 +10,7 @@ SRC_URI += " \
     file://target-utils.cfg \
 "
 
-export TARGETCFLAGS="${TARGET_CC_ARCH} ${TOOLCHAIN_OPTIONS} ${CFLAGS} ${LDFLAGS}"
+export userccflags="${TARGET_CC_ARCH} ${TOOLCHAIN_OPTIONS} ${CFLAGS} ${LDFLAGS}"
 
 do_install() {
     for i in bareboxcrc32 bareboxenv bareboximd kernel-install
