@@ -1,0 +1,104 @@
+From 2ea5abb20b077cf24aa90f1c9f73c9f389bd9c0a Mon Sep 17 00:00:00 2001
+From: Ahmad Fatoum <ahmad@a3f.at>
+Date: Thu, 26 Nov 2020 21:37:17 +0100
+Subject: [PATCH] sandbox: retire CONFIG_LINUX symbol in favor of
+ CONFIG_SANDBOX
+
+5211e428cbab ("image: Convert the IH_... values to enums") removed the
+IH_ARCH_LINUX enumeration value leading to breakage of sandbox
+configurations that enable bootm. Instead of reinstating IH_ARCH_LINUX,
+just use IH_ARCH_SANDBOX and remove mention of CONFIG_LINUX altogether,
+it's always true anyway when CONFIG_SANDBOX is true.
+
+Fixes: 5211e428cbab ("image: Convert the IH_... values to enums")
+Cc: Antony Pavlov <antonynpavlov@gmail.com>
+Signed-off-by: Ahmad Fatoum <ahmad@a3f.at>
+Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+---
+ arch/sandbox/Kconfig   | 6 +-----
+ commands/Kconfig       | 2 +-
+ drivers/net/Kconfig    | 2 +-
+ drivers/serial/Kconfig | 2 +-
+ include/image.h        | 4 ++--
+ 5 files changed, 6 insertions(+), 10 deletions(-)
+
+diff --git a/arch/sandbox/Kconfig b/arch/sandbox/Kconfig
+index 40e04919d..433e2fee9 100644
+--- a/arch/sandbox/Kconfig
++++ b/arch/sandbox/Kconfig
+@@ -7,17 +7,13 @@ config SANDBOX
+ 	select ARCH_HAS_UBSAN_SANITIZE_ALL
+ 	select HAVE_ARCH_KASAN
+ 	select HAS_DMA
++	select GENERIC_FIND_NEXT_BIT
+ 	default y
+ 
+ config ARCH_TEXT_BASE
+ 	hex
+ 	default 0x00000000
+ 
+-config LINUX
+-	bool
+-	default y
+-	select GENERIC_FIND_NEXT_BIT
+-
+ config SANDBOX_UNWIND
+ 	bool
+ 	default y
+diff --git a/commands/Kconfig b/commands/Kconfig
+index 3789f33c3..bc8c58623 100644
+--- a/commands/Kconfig
++++ b/commands/Kconfig
+@@ -2012,7 +2012,7 @@ config CMD_KEYSTORE
+ 
+ config CMD_LINUX_EXEC
+ 	bool "linux exec"
+-	depends on LINUX
++	depends on SANDBOX
+ 	help
+ 	  Execute a command on the host
+ 
+diff --git a/drivers/net/Kconfig b/drivers/net/Kconfig
+index 76509a52a..0d55ea7a3 100644
+--- a/drivers/net/Kconfig
++++ b/drivers/net/Kconfig
+@@ -242,7 +242,7 @@ config DRIVER_NET_SMC91111
+ 
+ config DRIVER_NET_TAP
+ 	bool "tap Ethernet driver"
+-	depends on LINUX
++	depends on SANDBOX
+ 
+ config DRIVER_NET_EFI_SNP
+ 	bool "EFI SNP ethernet driver"
+diff --git a/drivers/serial/Kconfig b/drivers/serial/Kconfig
+index 14cd430ee..5c6f0e88e 100644
+--- a/drivers/serial/Kconfig
++++ b/drivers/serial/Kconfig
+@@ -52,7 +52,7 @@ config DRIVER_SERIAL_AUART
+ 	bool "i.MX23/i.MX28 application UART serial driver"
+ 
+ config DRIVER_SERIAL_LINUX_CONSOLE
+-	depends on LINUX
++	depends on SANDBOX
+ 	default y
+ 	bool "linux console driver"
+ 
+diff --git a/include/image.h b/include/image.h
+index 963ea9686..fa0647684 100644
+--- a/include/image.h
++++ b/include/image.h
+@@ -127,8 +127,8 @@ enum {
+ #define IH_ARCH IH_ARCH_BLACKFIN
+ #elif defined(__avr32__)
+ #define IH_ARCH IH_ARCH_AVR32
+-#elif defined(CONFIG_LINUX)
+-#define IH_ARCH IH_ARCH_LINUX
++#elif defined(CONFIG_SANDBOX)
++#define IH_ARCH IH_ARCH_SANDBOX
+ #else
+ #define IH_ARCH IH_ARCH_INVALID
+ #endif
+-- 
+2.25.1
+
