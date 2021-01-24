@@ -1,4 +1,4 @@
-From 2ea5abb20b077cf24aa90f1c9f73c9f389bd9c0a Mon Sep 17 00:00:00 2001
+From ac1c85a00921e9dc73118bf554fdd0c63c9d0da0 Mon Sep 17 00:00:00 2001
 From: Ahmad Fatoum <ahmad@a3f.at>
 Date: Thu, 26 Nov 2020 21:37:17 +0100
 Subject: [PATCH] sandbox: retire CONFIG_LINUX symbol in favor of
@@ -23,13 +23,13 @@ Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
  5 files changed, 6 insertions(+), 10 deletions(-)
 
 diff --git a/arch/sandbox/Kconfig b/arch/sandbox/Kconfig
-index 40e04919d..433e2fee9 100644
+index bced81f25..ef7b2b57e 100644
 --- a/arch/sandbox/Kconfig
 +++ b/arch/sandbox/Kconfig
-@@ -7,17 +7,13 @@ config SANDBOX
- 	select ARCH_HAS_UBSAN_SANITIZE_ALL
- 	select HAVE_ARCH_KASAN
- 	select HAS_DMA
+@@ -10,17 +10,13 @@ config SANDBOX
+ 	select BLOCK
+ 	select BLOCK_WRITE
+ 	select PARTITION_DISK
 +	select GENERIC_FIND_NEXT_BIT
  	default y
  
@@ -46,10 +46,10 @@ index 40e04919d..433e2fee9 100644
  	bool
  	default y
 diff --git a/commands/Kconfig b/commands/Kconfig
-index 3789f33c3..bc8c58623 100644
+index 9114d3cb3..2ead93c91 100644
 --- a/commands/Kconfig
 +++ b/commands/Kconfig
-@@ -2012,7 +2012,7 @@ config CMD_KEYSTORE
+@@ -2033,7 +2033,7 @@ config CMD_KEYSTORE
  
  config CMD_LINUX_EXEC
  	bool "linux exec"
