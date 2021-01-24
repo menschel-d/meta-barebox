@@ -1,4 +1,4 @@
-From ac1c85a00921e9dc73118bf554fdd0c63c9d0da0 Mon Sep 17 00:00:00 2001
+From c246102ca43fd16f819cfdca26af83c690e5b354 Mon Sep 17 00:00:00 2001
 From: Ahmad Fatoum <ahmad@a3f.at>
 Date: Thu, 26 Nov 2020 21:37:17 +0100
 Subject: [PATCH] sandbox: retire CONFIG_LINUX symbol in favor of
@@ -14,6 +14,7 @@ Fixes: 5211e428cbab ("image: Convert the IH_... values to enums")
 Cc: Antony Pavlov <antonynpavlov@gmail.com>
 Signed-off-by: Ahmad Fatoum <ahmad@a3f.at>
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+(cherry picked from commit cee45e68b5b2b415e786216e32fe3ef0f9dbbf02)
 ---
  arch/sandbox/Kconfig   | 6 +-----
  commands/Kconfig       | 2 +-
@@ -23,13 +24,13 @@ Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
  5 files changed, 6 insertions(+), 10 deletions(-)
 
 diff --git a/arch/sandbox/Kconfig b/arch/sandbox/Kconfig
-index bced81f25..ef7b2b57e 100644
+index 113b619fc..d9fc0c947 100644
 --- a/arch/sandbox/Kconfig
 +++ b/arch/sandbox/Kconfig
-@@ -10,17 +10,13 @@ config SANDBOX
- 	select BLOCK
+@@ -11,17 +11,13 @@ config SANDBOX
  	select BLOCK_WRITE
  	select PARTITION_DISK
+ 	select ARCH_HAS_STACK_DUMP if ASAN
 +	select GENERIC_FIND_NEXT_BIT
  	default y
  
@@ -42,11 +43,11 @@ index bced81f25..ef7b2b57e 100644
 -	default y
 -	select GENERIC_FIND_NEXT_BIT
 -
- config SANDBOX_UNWIND
- 	bool
- 	default y
+ config SANDBOX_REEXEC
+ 	prompt "exec(2) reset handler"
+ 	def_bool y
 diff --git a/commands/Kconfig b/commands/Kconfig
-index 9114d3cb3..2ead93c91 100644
+index df18715f2..aee9ee35b 100644
 --- a/commands/Kconfig
 +++ b/commands/Kconfig
 @@ -2033,7 +2033,7 @@ config CMD_KEYSTORE
