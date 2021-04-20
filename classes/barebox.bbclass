@@ -85,7 +85,7 @@ def find_dtss(d):
     return result
 
 apply_cfgs() {
-    fragments=${@" ".join(find_cfgs(d))}
+    fragments="${@" ".join(find_cfgs(d))}"
     if [ -n "${fragments}" ]
     then
         bbnote "Applying configuration fragments."
