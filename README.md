@@ -57,6 +57,20 @@ to the maintainers listed below.
 [pull requests]:
 <https://github.com/menschel-d/meta-barebox/pulls>
 
+When sending patches or pull requests, please adhere to some common practices
+when writing your commit messages:
+
+- Please limit the line lenght in the commit message to 80 characters where
+  possible (If you use vim, then [`gq`][vim gq] is your friend).
+- Please add a *Signed-off-by* statement (`git commit -s`,
+  see also [Developer Certificate of Origin][]).
+
+[vim gq]:
+<https://vim.fandom.com/wiki/Automatic_word_wrapping>
+
+[Developer Certificate of Origin]:
+<https://developercertificate.org>
+
 
 ### Maintainers
 
