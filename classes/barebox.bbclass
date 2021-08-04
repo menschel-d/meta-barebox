@@ -29,8 +29,8 @@ BAREBOX_IMAGE_SRC[doc] = "This option is intended for configurations that produc
 #
 ##############################################################################
 
-BAREBOX_IMAGE ??= "${BAREBOX_IMAGE_BASENAME}-${PV}-${PR}-${MACHINE}-${DATETIME}"
-BAREBOX_IMAGE[vardepsexclude] += "DATETIME"
+BAREBOX_IMAGE ??= "${BAREBOX_IMAGE_BASENAME}-${PV}-${PR}-${MACHINE}${IMAGE_VERSION_SUFFIX}"
+BAREBOX_IMAGE[vardepsexclude] += "IMAGE_VERSION_SUFFIX"
 BAREBOX_IMAGE[doc] = "The complete file name of the generated image file without any file extension."
 
 BAREBOX_IMAGE_BASENAME ??= "${PN}"

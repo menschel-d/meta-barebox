@@ -134,7 +134,7 @@ The following output variables are provided:
   The complete file name of the generated image file without any
   file extension.
 
-  Default value: `"${BAREBOX_IMAGE_BASENAME}-${PV}-${PR}-${MACHINE}-${DATETIME}"`
+  Default value: `"${BAREBOX_IMAGE_BASENAME}-${PV}-${PR}-${MACHINE}${IMAGE_VERSION_SUFFIX}"`
 
 
 - `BAREBOX_IMAGE_BASENAME`\
