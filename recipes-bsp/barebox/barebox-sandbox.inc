@@ -12,7 +12,7 @@ SRC_URI += " \
 
 BAREBOX_ARCH = "sandbox"
 
-EXTRA_OEMAKE_prepend = ' \
+EXTRA_OEMAKE:prepend = ' \
     CC="${CC}" \
     CPP="${CPP}" \
 '

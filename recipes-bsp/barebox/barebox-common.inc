@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = " \
 
 DEPENDS = "bison-native"
 
-PV_append = "+git${SRCPV}"
+PV:append = "+git${SRCPV}"
 SRC_URI = "git://git.pengutronix.de/barebox;branch=${SRCBRANCH}"
 SRCBRANCH ??= "master"
 

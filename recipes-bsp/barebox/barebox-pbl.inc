@@ -19,7 +19,7 @@ def get_extra_image_name(d):
 
 BAREBOX_IMAGE_SRC_EXTRA ??= "${@get_extra_image_name(d)}"
 
-do_deploy_append() {
+do_deploy:append() {
     image_src_spi="$(echo ${BAREBOX_IMAGE_SRC%.img}.spi.img)"
     if [ -f "${B}/${image_src_spi}" ]
     then

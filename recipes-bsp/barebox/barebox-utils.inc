@@ -34,4 +34,4 @@ do_install[dirs] += "${D}/${sbindir}"
 
 do_deploy[noexec] = "1"
 
-COMPATIBLE_MACHINE = "${COMPATIBLE_MACHINE_pn-barebox}"
+COMPATIBLE_MACHINE = "${COMPATIBLE_MACHINE:pn-barebox}"

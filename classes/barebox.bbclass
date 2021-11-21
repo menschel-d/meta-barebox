@@ -1,4 +1,4 @@
-DEPENDS_prepend = "lzop-native "
+DEPENDS:prepend = "lzop-native "
 
 inherit cml1
 inherit deploy
@@ -52,7 +52,7 @@ BAREBOX_IMAGE_SYMLINK ??= "${BAREBOX_IMAGE_BASENAME}"
 BAREBOX_IMAGE_SYMLINK[doc] = "A symbolic name to the most recent build of the bootloader, without any file extension."
 
 
-EXTRA_OEMAKE_prepend = ' \
+EXTRA_OEMAKE:prepend = ' \
     -C "${S}" \
     KBUILD_OUTPUT="${B}" \
     CROSS_COMPILE="${TARGET_PREFIX}" \

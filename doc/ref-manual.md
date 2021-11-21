@@ -1,8 +1,8 @@
 # Reference Manual for `meta-barebox`
 
 - **Author:**  Dennis Menschel <<menschel-d@posteo.de>>
-- **Date:**    2019-05-17
-- **Version:** Yocto 2.7 (warrior)
+- **Date:**    2021-11-21
+- **Version:** Yocto 3.4 (honister)
 
 This work is licensed under a
 [Creative Commons Attribution-ShareAlike 4.0 International License][].
@@ -232,7 +232,7 @@ Last but not least, the machine needs to be listed in the
 `COMPATIBLE_MACHINE` variable for barebox:
 
 ```BitBake
-COMPATIBLE_MACHINE_pn-barebox = "<machine>"
+COMPATIBLE_MACHINE:pn-barebox = "<machine>"
 ```
 
 If the machine requires a pre-bootloader in order to work, you need to set
@@ -241,10 +241,10 @@ Furthermore, the pre-bootloader package needs to be added to the
 runtime-dependencies of barebox:
 
 ```BitBake
-BAREBOX_CONFIG_pn-barebox-pbl = "<pre-bootloader_configuration>"
-BAREBOX_IMAGE_SRC_pn-barebox-pbl = "<pre-bootloader_image>"
-RDEPENDS_barebox += "barebox-pbl"
-COMPATIBLE_MACHINE_pn-barebox-pbl = "<machine>"
+BAREBOX_CONFIG:pn-barebox-pbl = "<pre-bootloader_configuration>"
+BAREBOX_IMAGE_SRC:pn-barebox-pbl = "<pre-bootloader_image>"
+RDEPENDS:barebox += "barebox-pbl"
+COMPATIBLE_MACHINE:pn-barebox-pbl = "<machine>"
 ```
 
 ### Barebox configuration
@@ -317,13 +317,13 @@ This can be accomplished by appending the following lines to
 `conf/local.conf`:
 
 ```BitBake
-BAREBOX_CONFIG_beaglebone-yocto = "omap_defconfig"
-BAREBOX_CONFIG_pn-barebox-pbl_beaglebone-yocto = "am335x_mlo_defconfig"
-BAREBOX_IMAGE_SRC_beaglebone-yocto = "images/barebox-am33xx-beaglebone.img"
-BAREBOX_IMAGE_SRC_pn-barebox-pbl_beaglebone-yocto = "images/barebox-am33xx-beaglebone-mlo.img"
-RDEPENDS_barebox_beaglebone-yocto += "barebox-pbl"
-COMPATIBLE_MACHINE_pn-barebox_beaglebone-yocto = "beaglebone-yocto"
-COMPATIBLE_MACHINE_pn-barebox-pbl_beaglebone-yocto = "beaglebone-yocto"
+BAREBOX_CONFIG:beaglebone-yocto = "omap_defconfig"
+BAREBOX_CONFIG:pn-barebox-pbl:beaglebone-yocto = "am335x_mlo_defconfig"
+BAREBOX_IMAGE_SRC:beaglebone-yocto = "images/barebox-am33xx-beaglebone.img"
+BAREBOX_IMAGE_SRC:pn-barebox-pbl:beaglebone-yocto = "images/barebox-am33xx-beaglebone-mlo.img"
+RDEPENDS:barebox:beaglebone-yocto += "barebox-pbl"
+COMPATIBLE_MACHINE:pn-barebox:beaglebone-yocto = "beaglebone-yocto"
+COMPATIBLE_MACHINE:pn-barebox-pbl:beaglebone-yocto = "beaglebone-yocto"
 ```
 
 This sets the config for both bootloader parts and also lists the
@@ -594,9 +594,9 @@ following lines to `conf/local.conf`:
 ```BitBake
 MACHINE = "raspberrypi2"
 
-BAREBOX_CONFIG_raspberrypi2 = "rpi_defconfig"
-BAREBOX_IMAGE_SRC_raspberrypi2 = "images/barebox-raspberry-pi-2.img"
-COMPATIBLE_MACHINE_pn-barebox_raspberrypi2 = "raspberrypi2"
+BAREBOX_CONFIG:raspberrypi2 = "rpi_defconfig"
+BAREBOX_IMAGE_SRC:raspberrypi2 = "images/barebox-raspberry-pi-2.img"
+COMPATIBLE_MACHINE:pn-barebox:raspberrypi2 = "raspberrypi2"
 ```
 
 Now that the machine configuration of the Raspberry Pi 2 has been extended, we
