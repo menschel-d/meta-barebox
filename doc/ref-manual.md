@@ -1,8 +1,8 @@
 # Reference Manual for `meta-barebox`
 
 - **Author:**  Dennis Menschel <<menschel-d@posteo.de>>
-- **Date:**    2021-11-21
-- **Version:** Yocto 3.4 (honister)
+- **Date:**    2022-04-30
+- **Version:** Yocto 4.0 (kirkstone)
 
 This work is licensed under a
 [Creative Commons Attribution-ShareAlike 4.0 International License][].
@@ -308,6 +308,19 @@ select it:
 ```BitBake
 MACHINE = "beaglebone-yocto"
 ```
+
+Since Yocto version 4.0 (kirkstone), specifically commit
+[`poky@66a76e7cc7b8be2965e7cd9093053f8e5ab71a96`][], the preferred bootloader
+is set to u-boot by default.
+In order to be able to build and use barebox, we have to overwrite the default
+value:
+
+```BitBake
+PREFERRED_PROVIDER_virtual/bootloader = "barebox"
+```
+
+[`poky@66a76e7cc7b8be2965e7cd9093053f8e5ab71a96`]:
+<https://git.yoctoproject.org/poky/commit/?id=66a76e7cc7b8be2965e7cd9093053f8e5ab71a96>
 
 
 #### Machine configuration
