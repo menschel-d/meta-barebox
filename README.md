@@ -1,5 +1,22 @@
 # `meta-barebox`
 
+> **Deprecation notice:**
+> `meta-barebox` was a software layer for the Yocto Project and OpenEmbedded
+> build system which provided support for the barebox bootloader.
+> The layer was under active development from 2016 until 2024.
+> The supported Yocto versions range from 2.3 (pyro) up to 5.1 (styhead).
+> With the release of Yocto version 5.2 (walnascar), barebox is now officially
+> supported by
+> [openembedded-core](https://layers.openembedded.org/layerindex/recipe/450508/).
+>
+> That means `meta-barebox` has fulfilled its purpose and is now obsolete.
+> This layer has been renamed from `meta-barebox` to `meta-barebox-legacy` in
+> order to free up the original name in the OpenEmbedded layer index, in case
+> anybody wants to start a new layer that is related to barebox.
+> The layer's Git repository has not been renamed so legacy users won't be
+> disrupted.
+
+
 `meta-barebox` is a software layer for the [Yocto Project][] and
 [OpenEmbedded][] build system which provides support for the
 [barebox][] bootloader.
